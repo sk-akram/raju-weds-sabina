@@ -36,11 +36,11 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
       fallbackCaption = "The Blessed Couple entering the Grand Banquet Hall";
       fallbackCategory = "pre-wedding";
     } else if (i === 2) {
-      fallbackUrl = "/src/assets/images/nikah_stage_1782331038747.jpg";
+      fallbackUrl = "/images/nikah_stage.jpg";
       fallbackCaption = "Nikah Stage - Traditional Low Seating & Soft Drapes";
       fallbackCategory = "ceremony";
     } else if (i === 3) {
-      fallbackUrl = "/src/assets/images/walima_banquet_1782331057014.jpg";
+      fallbackUrl = "/images/walima_banquet.jpg";
       fallbackCaption = "Walima Reception Banquet - Emerald and Gold Tableware";
       fallbackCategory = "reception";
     }
