@@ -1,20 +1,152 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Wedding Invitation - Sk Raju & Sabina Khatun
 
-# Run and deploy your AI Studio app
+A beautiful, interactive wedding invitation website for the marriage of Sk Raju and Sabina Khatun.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/bfd8c45d-818f-42fc-ac25-13fc8c5c249b
+- **Dual Version Support**: 
+  - Main route (`/`): Full Nikah + Walima celebration
+  - Walima route (`/walima`): Walima-only celebration
+- **Interactive Royal Envelope**: Animated envelope opening experience
+- **Theme Customization**: 
+  - Blushing Nikah theme (burgundy, blue, rose)
+  - Walima Chic theme (navy blue, silver)
+- **Countdown Timer**: With Google Calendar and iCal integration
+- **Venue Map**: Interactive map with multiple venue locations
+- **Photo Gallery**: Filterable gallery with lightbox
+- **RSVP System**: Guest registration with attendance tracking
+- **Guestbook**: Share blessings and prayers
+- **Storyline**: Journey of the couple through chapters
+- **Scratch Cards**: Interactive blessing reveal
 
-## Run Locally
+## Tech Stack
 
-**Prerequisites:**  Node.js
+- **Frontend**: React 18 with TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Routing**: React Router
+- **Icons**: Lucide React
+- **Build Tool**: Vite
 
+## Getting Started
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/sk-akram/raju-dada-wedding.git
+cd raju-dada-wedding
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to:
+   - Main site: `http://localhost:3000`
+   - Walima only: `http://localhost:3000/walima`
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+The built files will be in the `dist` directory.
+
+## Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── App.tsx        # Main application
+│   ├── ThemeSwitcher.tsx
+│   ├── CountdownTimer.tsx
+│   ├── VenueMap.tsx
+│   ├── Gallery.tsx
+│   ├── RSVPForm.tsx
+│   ├── Guestbook.tsx
+│   ├── Storyline.tsx
+│   ├── ScratchCard.tsx
+│   └── RoyalEnvelope.tsx
+├── lib/               # Utilities and context
+│   ├── WeddingDataContext.tsx
+│   └── sheetsSync.ts
+├── types.ts           # TypeScript type definitions
+├── main.tsx          # Entry point
+└── index.css         # Global styles
+```
+
+## Customization
+
+### Wedding Data
+
+The wedding data can be customized through the `WeddingDataContext` or by modifying the default values in the components.
+
+### Themes
+
+Themes are defined in `ThemeSwitcher.tsx`. You can modify colors, names, and add new themes by updating the `THEMES` array.
+
+### Images
+
+Replace placeholder images in the `src/assets/images/` directory with your own wedding photos.
+
+## Deployment
+
+### Vercel
+
+1. Push your code to GitHub
+2. Import the repository in Vercel
+3. Vercel will automatically detect Vite and configure the build settings
+4. Deploy
+
+### Netlify
+
+1. Build the project: `npm run build`
+2. Upload the `dist` folder to Netlify
+3. Or connect your GitHub repository for automatic deployments
+
+### Cloudflare Pages
+
+**Option 1: Direct Upload**
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Go to Cloudflare Dashboard → Pages → Create a project
+3. Select "Upload assets"
+4. Upload the contents of the `dist` folder
+5. Deploy
+
+**Option 2: Git Integration**
+
+1. Push your code to GitHub
+2. Go to Cloudflare Dashboard → Pages → Create a project
+3. Connect to your GitHub repository
+4. Configure build settings:
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+5. Deploy
+
+**Note**: The `_redirects` file in the `public` folder ensures proper client-side routing for the SPA.
+
+## License
+
+Created by [Akram](https://www.linkedin.com/in/skakram1/)
+
+---
+
+**Made with ❤️ for Sk Raju & Sabina Khatun**
