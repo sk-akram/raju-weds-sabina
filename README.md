@@ -122,13 +122,13 @@ Replace placeholder images in the `src/assets/images/` directory with your own w
 **Prerequisites:**
 - Cloudflare account with D1 database and R2 bucket configured
 - Database ID: `fc0a1720-029f-4917-bf65-4d80a76774c9`
-- R2 bucket name: `wedding-images`
+- R2 bucket name: `wedding-images` (optional, images stored in database)
 
 **Step 1: Initialize Database**
 
 Run the database schema:
 ```bash
-wrangler d1 execute raju-weds-sabina --file=schema.sql
+wrangler d1 execute raju-weds-sabina --file=schema.sql --remote
 ```
 
 **Step 2: Deploy with Wrangler**
@@ -154,10 +154,18 @@ wrangler deploy
 4. In Settings → Functions → D1 database bindings:
    - Variable name: `DB`
    - D1 database: `raju-weds-sabina`
-5. In Settings → Functions → R2 bucket bindings:
-   - Variable name: `BUCKET`
-   - R2 bucket: `wedding-images`
-6. Deploy
+5. Deploy
+
+**Step 4: Upload Images**
+
+After deployment, upload images using the API:
+```bash
+# Install form-data for multipart uploads
+npm install form-data
+
+# Upload images to your deployed worker
+node scripts/upload-after-deploy.cjs https://your-worker.pages.dev
+```
 
 **Note**: The `_redirects` file in the `public` folder ensures proper client-side routing for the SPA.
 
