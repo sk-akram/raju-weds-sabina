@@ -1,0 +1,6 @@
+{
+  "name": "Wedding Invitation - Raju & Sabina",
+  "description": "Interactive digital wedding invitation for Sk Raju and Sabina Khatun's wedding, featuring a countdown timer, Nikah and Walima ceremony details, dynamic RSVP tracking, interactive map, responsive gallery, and guestbook.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

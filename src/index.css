@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-display: "Cinzel", serif;
+  --font-cursive: "Alex Brush", cursive;
+  
+  --color-gold-50: #fdfbf7;
+  --color-gold-100: #faf3e1;
+  --color-gold-200: #f3e4be;
+  --color-gold-300: #e7ce90;
+  --color-gold-400: #dbb362;
+  --color-gold-500: #cf9b3a;
+  --color-gold-600: #bc822e;
+  --color-gold-700: #9d6425;
+  --color-gold-800: #7f4f20;
+  --color-gold-900: #683e1b;
+  
+  --color-emerald-50: #f2f7f5;
+  --color-emerald-100: #dfebd7;
+  --color-emerald-200: #b9dacd;
+  --color-emerald-300: #8cbeab;
+  --color-emerald-400: #5fa188;
+  --color-emerald-500: #3f846c;
+  --color-emerald-600: #2f6954;
+  --color-emerald-700: #275646;
+  --color-emerald-800: #1b3d32;
+  --color-emerald-900: #0f2e23;
+  --color-emerald-950: #091a14;
+}
+
+@layer utilities {
+  /* Elegant scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #091a14;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #bc822e;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #cf9b3a;
+  }
+}
+
+/* Custom CSS animations for floral particles and smooth wedding effects */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg) scale(0.7); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(105vh) rotate(360deg) scale(0.9); opacity: 0; }
+}
+
+.floral-particle {
+  position: absolute;
+  top: -10%;
+  pointer-events: none;
+  animation: float 15s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(218, 165, 32, 0.45));
+}
+
+.shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    rgba(212, 175, 55, 0.1) 0%,
+    rgba(212, 175, 55, 0.4) 50%,
+    rgba(212, 175, 55, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* CUSTOM THEMED LUXURY CURSORS WITH SHINY METALLIC GLOW & SPARKLING STARS */
+
+/* 1. CLASSIC ROYAL EMERALD CURSOR */
+.theme-classic, .theme-classic * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 4 V24 L13.5 19 L17.5 26 L20 24.5 L16 17.5 L21.5 17.5 Z' fill='%23cf9b3a' stroke='%23faf3e1' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M22 3 C22.3 4.1 23.1 4.9 24.2 5.2 C23.1 5.5 22.3 6.3 22 7.4 C21.7 6.3 20.9 5.5 19.8 5.2 C20.9 4.9 21.7 4.1 22 3 Z' fill='%23e7ce90'/%3E%3C/svg%3E") 8 4, auto;
+}
+.theme-classic a, .theme-classic button, .theme-classic [role='button'], .theme-classic input, .theme-classic select, .theme-classic textarea, .theme-classic .cursor-pointer, .theme-classic .cursor-pointer * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10 4 C11 4 11.8 4.8 11.8 5.8 V13 C11.8 13.8 12.6 13.8 13.4 13 C14.2 12.2 15 12.2 15 13 C15.8 13.8 15.8 13.8 16.6 13 C17.4 12.2 18.2 12.2 18.2 13 V17 C18.2 20.5 15.8 23 12.6 23 C9.4 23 7.8 21.4 7.8 18 V8 C7.8 4.8 9.4 4 10 4 Z' fill='%23cf9b3a' stroke='%23faf3e1' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M20 5 C20.3 6.1 21.1 6.9 22.2 7.2 C21.1 7.5 20.3 8.3 20 9.4 C19.7 8.3 18.9 7.5 17.8 7.2 C18.9 6.9 19.7 6.1 20 5 Z' fill='%23e7ce90'/%3E%3C/svg%3E") 10 4, pointer;
+}
+
+/* 2. BLUSHING NIKAH BURGUNDY & ROSE GOLD CURSOR */
+.theme-nikah, .theme-nikah * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 4 V24 L13.5 19 L17.5 26 L20 24.5 L16 17.5 L21.5 17.5 Z' fill='%23e16d80' stroke='%23fdfbf7' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M22 3 C22.3 4.1 23.1 4.9 24.2 5.2 C23.1 5.5 22.3 6.3 22 7.4 C21.7 6.3 20.9 5.5 19.8 5.2 C20.9 4.9 21.7 4.1 22 3 Z' fill='%23f3a4b0'/%3E%3C/svg%3E") 8 4, auto;
+}
+.theme-nikah a, .theme-nikah button, .theme-nikah [role='button'], .theme-nikah input, .theme-nikah select, .theme-nikah textarea, .theme-nikah .cursor-pointer, .theme-nikah .cursor-pointer * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10 4 C11 4 11.8 4.8 11.8 5.8 V13 C11.8 13.8 12.6 13.8 13.4 13 C14.2 12.2 15 12.2 15 13 C15.8 13.8 15.8 13.8 16.6 13 C17.4 12.2 18.2 12.2 18.2 13 V17 C18.2 20.5 15.8 23 12.6 23 C9.4 23 7.8 21.4 7.8 18 V8 C7.8 4.8 9.4 4 10 4 Z' fill='%23e16d80' stroke='%23fdfbf7' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M20 5 C20.3 6.1 21.1 6.9 22.2 7.2 C21.1 7.5 20.3 8.3 20 9.4 C19.7 8.3 18.9 7.5 17.8 7.2 C18.9 6.9 19.7 6.1 20 5 Z' fill='%23f3a4b0'/%3E%3C/svg%3E") 10 4, pointer;
+}
+
+/* 3. WALIMA CHIC COFFEE & PLATINUM CURSOR */
+.theme-walima, .theme-walima * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 4 V24 L13.5 19 L17.5 26 L20 24.5 L16 17.5 L21.5 17.5 Z' fill='%23c2ae95' stroke='%23f5f0e8' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M22 3 C22.3 4.1 23.1 4.9 24.2 5.2 C23.1 5.5 22.3 6.3 22 7.4 C21.7 6.3 20.9 5.5 19.8 5.2 C20.9 4.9 21.7 4.1 22 3 Z' fill='%23dfd5c6'/%3E%3C/svg%3E") 8 4, auto;
+}
+.theme-walima a, .theme-walima button, .theme-walima [role='button'], .theme-walima input, .theme-walima select, .theme-walima textarea, .theme-walima .cursor-pointer, .theme-walima .cursor-pointer * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M10 4 C11 4 11.8 4.8 11.8 5.8 V13 C11.8 13.8 12.6 13.8 13.4 13 C14.2 12.2 15 12.2 15 13 C15.8 13.8 15.8 13.8 16.6 13 C17.4 12.2 18.2 12.2 18.2 13 V17 C18.2 20.5 15.8 23 12.6 23 C9.4 23 7.8 21.4 7.8 18 V8 C7.8 4.8 9.4 4 10 4 Z' fill='%23c2ae95' stroke='%23f5f0e8' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M20 5 C20.3 6.1 21.1 6.9 22.2 7.2 C21.1 7.5 20.3 8.3 20 9.4 C19.7 8.3 18.9 7.5 17.8 7.2 C18.9 6.9 19.7 6.1 20 5 Z' fill='%23dfd5c6'/%3E%3C/svg%3E") 10 4, pointer;
+}
+
