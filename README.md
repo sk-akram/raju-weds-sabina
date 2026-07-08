@@ -119,27 +119,45 @@ Replace placeholder images in the `src/assets/images/` directory with your own w
 
 ### Cloudflare Pages
 
-**Option 1: Direct Upload**
+**Prerequisites:**
+- Cloudflare account with D1 database and R2 bucket configured
+- Database ID: `fc0a1720-029f-4917-bf65-4d80a76774c9`
+- R2 bucket name: `wedding-images`
 
-1. Build the project:
+**Step 1: Initialize Database**
+
+Run the database schema:
 ```bash
-npm run build
+wrangler d1 execute raju-weds-sabina --file=schema.sql
 ```
 
-2. Go to Cloudflare Dashboard → Pages → Create a project
-3. Select "Upload assets"
-4. Upload the contents of the `dist` folder
-5. Deploy
+**Step 2: Deploy with Wrangler**
 
-**Option 2: Git Integration**
+```bash
+# Install Wrangler CLI
+npm install -g wrangler
 
-1. Push your code to GitHub
-2. Go to Cloudflare Dashboard → Pages → Create a project
-3. Connect to your GitHub repository
-4. Configure build settings:
+# Login to Cloudflare
+wrangler login
+
+# Deploy the worker
+wrangler deploy
+```
+
+**Step 3: Configure Cloudflare Pages**
+
+1. Go to Cloudflare Dashboard → Pages → Create a project
+2. Connect to your GitHub repository
+3. Configure build settings:
    - **Build command**: `npm run build`
    - **Build output directory**: `dist`
-5. Deploy
+4. In Settings → Functions → D1 database bindings:
+   - Variable name: `DB`
+   - D1 database: `raju-weds-sabina`
+5. In Settings → Functions → R2 bucket bindings:
+   - Variable name: `BUCKET`
+   - R2 bucket: `wedding-images`
+6. Deploy
 
 **Note**: The `_redirects` file in the `public` folder ensures proper client-side routing for the SPA.
 

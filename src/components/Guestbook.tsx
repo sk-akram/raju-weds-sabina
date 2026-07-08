@@ -32,32 +32,50 @@ export default function Guestbook() {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !messageText.trim()) return;
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      const newMessage: GuestbookMessage = {
-        id: Math.random().toString(36).substring(2, 9),
-        name: name.trim(),
-        relationship,
-        message: messageText.trim(),
-        createdAt: new Date().toISOString(),
-        likes: 0,
-      };
+    try {
+      const response = await fetch('/api/guestbook', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: name.trim(),
+          message: messageText.trim(),
+        }),
+      });
 
-      const updated = [newMessage, ...messages];
-      setMessages(updated);
-      localStorage.setItem('raju_sabina_wedding_guestbook', JSON.stringify(updated));
+      const result = await response.json();
 
-      // Reset fields
-      setName('');
-      setMessageText('');
-      setRelationship(GuestRelationship.WELL_WISHER);
+      if (result.success) {
+        const newMessage: GuestbookMessage = {
+          id: result.id.toString(),
+          name: name.trim(),
+          relationship,
+          message: messageText.trim(),
+          createdAt: new Date().toISOString(),
+          likes: 0,
+        };
+
+        const updated = [newMessage, ...messages];
+        setMessages(updated);
+        localStorage.setItem('raju_sabina_wedding_guestbook', JSON.stringify(updated));
+
+        // Reset fields
+        setName('');
+        setMessageText('');
+        setRelationship(GuestRelationship.WELL_WISHER);
+      }
+    } catch (error) {
+      console.error('Failed to submit guestbook entry:', error);
+    } finally {
       setIsSubmitting(false);
-    }, 800);
+    }
   };
 
   const handleLike = (id: string) => {

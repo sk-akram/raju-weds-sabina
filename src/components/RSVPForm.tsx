@@ -55,7 +55,7 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
@@ -69,24 +69,49 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
     }
 
     setIsSubmitting(true);
-    
-    setTimeout(() => {
-      const newRSVP: RSVP = {
-        id: savedRSVP?.id || Math.random().toString(36).substring(2, 9),
-        fullName: formData.fullName.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        attendance: formData.attendance,
-        guestsCount: formData.guestsCount,
-        dietaryPref: formData.dietaryPref,
-        prayer: formData.prayer.trim(),
-        createdAt: new Date().toISOString(),
-      };
 
-      localStorage.setItem('raju_sabina_wedding_rsvp', JSON.stringify(newRSVP));
-      setSavedRSVP(newRSVP);
+    try {
+      const response = await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          full_name: formData.fullName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          attendance: formData.attendance,
+          guests_count: formData.guestsCount,
+          dietary_pref: formData.dietaryPref,
+          prayer: formData.prayer.trim(),
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        const newRSVP: RSVP = {
+          id: result.id.toString(),
+          fullName: formData.fullName.trim(),
+          email: formData.email.trim(),
+          phone: formData.phone.trim(),
+          attendance: formData.attendance,
+          guestsCount: formData.guestsCount,
+          dietaryPref: formData.dietaryPref,
+          prayer: formData.prayer.trim(),
+          createdAt: new Date().toISOString(),
+        };
+
+        localStorage.setItem('raju_sabina_wedding_rsvp', JSON.stringify(newRSVP));
+        setSavedRSVP(newRSVP);
+      } else {
+        setError('Failed to submit RSVP. Please try again.');
+      }
+    } catch (error) {
+      setError('Failed to submit RSVP. Please try again.');
+    } finally {
       setIsSubmitting(false);
-    }, 1200);
+    }
   };
 
   const handleEdit = () => {

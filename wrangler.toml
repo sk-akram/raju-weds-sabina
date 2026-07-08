@@ -1,0 +1,15 @@
+name = "raju-weds-sabina"
+main = "src/worker.ts"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "raju-weds-sabina"
+database_id = "fc0a1720-029f-4917-bf65-4d80a76774c9"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "wedding-images"
