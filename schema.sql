@@ -19,10 +19,9 @@ CREATE TABLE IF NOT EXISTS guestbook (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Images table for caching and metadata
+-- Images table for storing binary image data
 CREATE TABLE IF NOT EXISTS images (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  r2_key TEXT NOT NULL UNIQUE,
   filename TEXT NOT NULL,
   content_type TEXT NOT NULL,
   size INTEGER NOT NULL,
@@ -30,6 +29,7 @@ CREATE TABLE IF NOT EXISTS images (
   height INTEGER,
   category TEXT, -- 'pre-wedding', 'ceremony', 'reception', 'other'
   caption TEXT,
+  image_data BLOB NOT NULL,
   uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   last_accessed DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -38,6 +38,5 @@ CREATE TABLE IF NOT EXISTS images (
 CREATE INDEX IF NOT EXISTS idx_rsvps_email ON rsvps(email);
 CREATE INDEX IF NOT EXISTS idx_rsvps_attendance ON rsvps(attendance);
 CREATE INDEX IF NOT EXISTS idx_guestbook_created ON guestbook(created_at);
-CREATE INDEX IF NOT EXISTS idx_images_r2_key ON images(r2_key);
 CREATE INDEX IF NOT EXISTS idx_images_category ON images(category);
 CREATE INDEX IF NOT EXISTS idx_images_last_accessed ON images(last_accessed);

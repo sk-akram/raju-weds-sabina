@@ -25,7 +25,7 @@ export default {
     // RSVP endpoints
     if (path === '/api/rsvp' && request.method === 'POST') {
       try {
-        const data = await request.json();
+        const data = await request.json() as any;
         
         const result = await env.DB.prepare(
           'INSERT INTO rsvps (full_name, email, phone, attendance, guests_count, dietary_pref, prayer) VALUES (?, ?, ?, ?, ?, ?, ?)'
@@ -68,7 +68,7 @@ export default {
     // Guestbook endpoints
     if (path === '/api/guestbook' && request.method === 'POST') {
       try {
-        const data = await request.json();
+        const data = await request.json() as any;
         
         const result = await env.DB.prepare(
           'INSERT INTO guestbook (name, message) VALUES (?, ?)'
@@ -129,26 +129,30 @@ export default {
       }
     }
 
-    // Serve images from R2
+    // Serve images from database
     if (path.startsWith('/api/images/') && request.method === 'GET') {
       try {
-        const key = path.replace('/api/images/', '');
-        const object = await env.BUCKET.get(key);
+        const imageId = path.replace('/api/images/', '');
+        
+        const result = await env.DB.prepare(
+          'SELECT * FROM images WHERE id = ?'
+        ).bind(imageId).first();
 
-        if (!object) {
+        if (!result) {
           return new Response('Image not found', { status: 404 });
         }
 
-        // Update last_accessed timestamp in database
+        // Update last_accessed timestamp
         await env.DB.prepare(
-          'UPDATE images SET last_accessed = CURRENT_TIMESTAMP WHERE r2_key = ?'
-        ).bind(key).run();
+          'UPDATE images SET last_accessed = CURRENT_TIMESTAMP WHERE id = ?'
+        ).bind(imageId).run();
 
         const headers = new Headers();
-        object.writeHttpMetadata(headers);
-        headers.set('etag', object.httpEtag);
+        headers.set('Content-Type', result.content_type as string);
+        headers.set('Content-Length', result.size as string);
+        headers.set('Cache-Control', 'public, max-age=31536000');
 
-        return new Response(object.body, { headers });
+        return new Response(result.image_data as ArrayBuffer, { headers });
       } catch (error) {
         return new Response('Failed to fetch image', { status: 500 });
       }
@@ -169,22 +173,22 @@ export default {
           });
         }
 
-        const key = `images/${Date.now()}-${file.name}`;
-        await env.BUCKET.put(key, file);
+        // Read file as ArrayBuffer
+        const arrayBuffer = await file.arrayBuffer();
 
-        // Store metadata in database
-        await env.DB.prepare(
-          'INSERT INTO images (r2_key, filename, content_type, size, category, caption) VALUES (?, ?, ?, ?, ?, ?)'
+        // Store binary data in database
+        const result = await env.DB.prepare(
+          'INSERT INTO images (filename, content_type, size, category, caption, image_data) VALUES (?, ?, ?, ?, ?, ?)'
         ).bind(
-          key,
           file.name,
           file.type,
           file.size,
           category,
-          caption
+          caption,
+          arrayBuffer
         ).run();
 
-        return new Response(JSON.stringify({ success: true, url: `/api/images/${key}` }), {
+        return new Response(JSON.stringify({ success: true, id: result.meta.last_row_id }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         });
       } catch (error) {

@@ -1,4 +1,4 @@
-export async function uploadImage(file: File, category?: string, caption?: string): Promise<string> {
+export async function uploadImage(file: File, category?: string, caption?: string): Promise<number> {
   const formData = new FormData();
   formData.append('file', file);
   if (category) formData.append('category', category);
@@ -9,17 +9,17 @@ export async function uploadImage(file: File, category?: string, caption?: strin
     body: formData,
   });
 
-  const result = await response.json();
+  const result = await response.json() as { success: boolean; id?: number; error?: string };
 
   if (result.success) {
-    return result.url;
+    return result.id!;
   } else {
     throw new Error(result.error || 'Failed to upload image');
   }
 }
 
-export function getImageUrl(key: string): string {
-  return `/api/images/${key}`;
+export function getImageUrl(id: number): string {
+  return `/api/images/${id}`;
 }
 
 export async function getImages(category?: string): Promise<any[]> {
