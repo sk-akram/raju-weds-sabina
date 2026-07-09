@@ -10,12 +10,13 @@ import { GuestbookMessage, GuestRelationship } from '../types';
 import { useWeddingData } from '../lib/WeddingDataContext';
 
 export default function Guestbook() {
-  const { data, updateLocalData } = useWeddingData();
+  const { data, updateLocalData, pushToSheet, isAuthenticated, signIn } = useWeddingData();
   const [messages, setMessages] = useState<GuestbookMessage[]>([]);
   const [name, setName] = useState('');
   const [relationship, setRelationship] = useState<GuestRelationship>(GuestRelationship.WELL_WISHER);
   const [messageText, setMessageText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     try {
@@ -28,35 +29,52 @@ export default function Guestbook() {
     }
   }, [data]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !messageText.trim()) return;
 
     setIsSubmitting(true);
+    setSyncStatus('syncing');
 
-    setTimeout(() => {
-      const newMessage: GuestbookMessage = {
-        id: Math.random().toString(36).substring(2, 9),
-        name: name.trim(),
-        relationship,
-        message: messageText.trim(),
-        createdAt: new Date().toISOString(),
-        likes: 0,
-      };
+    const newMessage: GuestbookMessage = {
+      id: Math.random().toString(36).substring(2, 9),
+      name: name.trim(),
+      relationship,
+      message: messageText.trim(),
+      createdAt: new Date().toISOString(),
+      likes: 0,
+    };
 
-      const updated = [newMessage, ...messages];
-      setMessages(updated);
-      updateLocalData({ guestbook_entries: JSON.stringify(updated) });
+    const updated = [newMessage, ...messages];
+    setMessages(updated);
+    updateLocalData({ guestbook_entries: JSON.stringify(updated) });
 
-      // Reset fields
-      setName('');
-      setMessageText('');
-      setRelationship(GuestRelationship.WELL_WISHER);
-      setIsSubmitting(false);
-    }, 800);
+    // Try to push to Google Sheet if authenticated
+    if (isAuthenticated) {
+      const success = await pushToSheet();
+      setSyncStatus(success ? 'success' : 'error');
+    } else {
+      // Try to sign in automatically for sheet sync
+      const signedIn = await signIn();
+      if (signedIn) {
+        const success = await pushToSheet();
+        setSyncStatus(success ? 'success' : 'error');
+      } else {
+        setSyncStatus('idle'); // Not authenticated, saved locally only
+      }
+    }
+
+    // Reset fields
+    setName('');
+    setMessageText('');
+    setRelationship(GuestRelationship.WELL_WISHER);
+    setIsSubmitting(false);
+
+    // Clear sync status after 3 seconds
+    setTimeout(() => setSyncStatus('idle'), 3000);
   };
 
-  const handleLike = (id: string) => {
+  const handleLike = async (id: string) => {
     const updated = messages.map((msg) => {
       if (msg.id === id) {
         return { ...msg, likes: msg.likes + 1 };
@@ -65,6 +83,11 @@ export default function Guestbook() {
     });
     setMessages(updated);
     updateLocalData({ guestbook_entries: JSON.stringify(updated) });
+
+    // Try to push to Google Sheet if authenticated
+    if (isAuthenticated) {
+      await pushToSheet();
+    }
   };
 
   const relationshipLabels = {
@@ -155,7 +178,7 @@ export default function Guestbook() {
           <button
             type="submit"
             disabled={isSubmitting || !name.trim() || !messageText.trim()}
-            className="w-full py-2.5 bg-gold-500 hover:bg-gold-600 active:scale-98 text-emerald-950 font-serif font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer disabled:bg-gold-500/40 disabled:text-emerald-950/40"
+            className="w-full py-2.5 bg-gold-500 hover:bg-gold-600 active:scale-98 text-emerald-950 font-serif font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer disabled:bg-gold-500/40 disabled:text-emerald-950/40 relative"
           >
             {isSubmitting ? (
               <div className="w-4 h-4 border-2 border-emerald-950 border-t-transparent rounded-full animate-spin" />
@@ -164,6 +187,15 @@ export default function Guestbook() {
                 <Send size={14} />
                 <span>Publish Blessing</span>
               </>
+            )}
+            {syncStatus !== 'idle' && (
+              <span className={`absolute -top-2 -right-2 w-4 h-4 rounded-full text-[8px] font-bold flex items-center justify-center ${
+                syncStatus === 'syncing' ? 'bg-blue-500 text-white animate-pulse' :
+                syncStatus === 'success' ? 'bg-green-500 text-white' :
+                'bg-red-500 text-white'
+              }`}>
+                {syncStatus === 'syncing' ? '...' : syncStatus === 'success' ? '✓' : '✗'}
+              </span>
             )}
           </button>
         </form>
