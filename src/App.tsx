@@ -279,7 +279,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
               {/* Image banner */}
               <div className="h-52 md:h-60 relative overflow-hidden">
                 <img
-                  src="/src/assets/images/nikah_stage_1782331038747.jpg"
+                  src={data['nikah_theme_image'] || '/src/assets/images/nikah_stage_1782331038747.jpg'}
                   alt="Nikah Ceremony Venue"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-500"
@@ -360,7 +360,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
             {/* Image banner */}
             <div className="h-52 md:h-60 relative overflow-hidden">
               <img
-                src="/src/assets/images/walima_banquet_1782331057014.jpg"
+                src={data['walima_theme_image'] || '/src/assets/images/walima_banquet_1782331057014.jpg'}
                 alt="Walima Reception Banquet"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-contain group-hover:scale-102 transition-transform duration-500"
