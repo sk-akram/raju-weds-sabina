@@ -133,8 +133,8 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
 
   rsvp_entries: { val: "[]", category: "RSVP", desc: "JSON array of RSVP entries" },
 
-  nikah_theme_image: { val: "https://drive.google.com/uc?export=view&id=1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6", category: "Theme", desc: "Google Drive URL for Nikah theme image" },
-  walima_theme_image: { val: "https://drive.google.com/uc?export=view&id=1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS", category: "Theme", desc: "Google Drive URL for Walima theme image" }
+  nikah_theme_image: { val: "https://lh3.googleusercontent.com/d/1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6", category: "Theme", desc: "Google Drive URL for Nikah theme image" },
+  walima_theme_image: { val: "https://lh3.googleusercontent.com/d/1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS", category: "Theme", desc: "Google Drive URL for Walima theme image" }
 };
 
 // Parse local memory values back from spreadsheet data
