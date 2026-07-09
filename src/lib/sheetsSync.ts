@@ -129,12 +129,12 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
   gallery8_caption: { val: "Fresh White & Blush Roses representing Rahmah and Sakinah", category: "Gallery", desc: "Image 8 Caption" },
   gallery8_category: { val: "Shared Moments", category: "Gallery", desc: "Image 8 Category" },
 
-  guestbook_entries: { val: "[]", category: "Guestbook", desc: "JSON array of guestbook entries" },
+ guestbook_entries: { val: "[]", category: "Guestbook", desc: "JSON array of guestbook entries" },
 
   rsvp_entries: { val: "[]", category: "RSVP", desc: "JSON array of RSVP entries" },
 
-  nikah_theme_image: { val: "", category: "Theme", desc: "Google Drive URL for Nikah theme image" },
-  walima_theme_image: { val: "", category: "Theme", desc: "Google Drive URL for Walima theme image" }
+  nikah_theme_image: { val: "https://lh3.googleusercontent.com/d/1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6", category: "Theme", desc: "Google Drive URL for Nikah theme image" },
+  walima_theme_image: { val: "https://lh3.googleusercontent.com/d/1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS", category: "Theme", desc: "Google Drive URL for Walima theme image" }
 };
 
 // Parse local memory values back from spreadsheet data
