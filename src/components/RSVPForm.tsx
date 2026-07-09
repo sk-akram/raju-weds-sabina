@@ -14,7 +14,7 @@ interface RSVPFormProps {
 }
 
 export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
-  const { data, updateLocalData } = useWeddingData();
+  const { data, updateLocalData, pushToSheet, isAuthenticated, signIn } = useWeddingData();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -28,6 +28,7 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
   const [savedRSVP, setSavedRSVP] = useState<RSVP | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     try {
@@ -60,7 +61,7 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
@@ -74,42 +75,60 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
     }
 
     setIsSubmitting(true);
+    setSyncStatus('syncing');
     
-    setTimeout(() => {
-      const newRSVP: RSVP = {
-        id: savedRSVP?.id || Math.random().toString(36).substring(2, 9),
-        fullName: formData.fullName.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.trim(),
-        attendance: formData.attendance,
-        guestsCount: formData.guestsCount,
-        dietaryPref: formData.dietaryPref,
-        prayer: formData.prayer.trim(),
-        createdAt: new Date().toISOString(),
-      };
+    const newRSVP: RSVP = {
+      id: savedRSVP?.id || Math.random().toString(36).substring(2, 9),
+      fullName: formData.fullName.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      attendance: formData.attendance,
+      guestsCount: formData.guestsCount,
+      dietaryPref: formData.dietaryPref,
+      prayer: formData.prayer.trim(),
+      createdAt: new Date().toISOString(),
+    };
 
-      // Save to Google Sheets via WeddingDataContext
-      try {
-        const rsvpData = data['rsvp_entries'] || '[]';
-        const parsed = JSON.parse(rsvpData);
-        const rsvps = Array.isArray(parsed) ? parsed : [];
-        
-        // Update existing RSVP or add new one
-        const updatedRSVPs = savedRSVP 
-          ? rsvps.map((r: RSVP) => r.id === newRSVP.id ? newRSVP : r)
-          : [newRSVP, ...rsvps];
-        
-        updateLocalData({ rsvp_entries: JSON.stringify(updatedRSVPs) });
-        setSavedRSVP(newRSVP);
-      } catch (e) {
-        console.error('Failed to save RSVP to sheets', e);
-        // Fallback to localStorage
-        localStorage.setItem('raju_sabina_wedding_rsvp', JSON.stringify(newRSVP));
-        setSavedRSVP(newRSVP);
+    // Save to Google Sheets via WeddingDataContext
+    try {
+      const rsvpData = data['rsvp_entries'] || '[]';
+      const parsed = JSON.parse(rsvpData);
+      const rsvps = Array.isArray(parsed) ? parsed : [];
+      
+      // Update existing RSVP or add new one
+      const updatedRSVPs = savedRSVP 
+        ? rsvps.map((r: RSVP) => r.id === newRSVP.id ? newRSVP : r)
+        : [newRSVP, ...rsvps];
+      
+      updateLocalData({ rsvp_entries: JSON.stringify(updatedRSVPs) });
+      setSavedRSVP(newRSVP);
+
+      // Try to push to Google Sheet if authenticated
+      if (isAuthenticated) {
+        const success = await pushToSheet();
+        setSyncStatus(success ? 'success' : 'error');
+      } else {
+        // Try to sign in automatically for sheet sync
+        const signedIn = await signIn();
+        if (signedIn) {
+          const success = await pushToSheet();
+          setSyncStatus(success ? 'success' : 'error');
+        } else {
+          setSyncStatus('idle'); // Not authenticated, saved locally only
+        }
       }
+    } catch (e) {
+      console.error('Failed to save RSVP to sheets', e);
+      setSyncStatus('error');
+      // Fallback to localStorage
+      localStorage.setItem('raju_sabina_wedding_rsvp', JSON.stringify(newRSVP));
+      setSavedRSVP(newRSVP);
+    }
 
-      setIsSubmitting(false);
-    }, 1200);
+    setIsSubmitting(false);
+
+    // Clear sync status after 3 seconds
+    setTimeout(() => setSyncStatus('idle'), 3000);
   };
 
   const handleEdit = () => {
@@ -433,6 +452,15 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
                     <span>Confirm</span>
                     <Sparkles size={14} className="absolute right-4 animate-pulse text-gold-300" />
                   </>
+                )}
+                {syncStatus !== 'idle' && (
+                  <span className={`absolute -top-2 -right-2 w-4 h-4 rounded-full text-[8px] font-bold flex items-center justify-center ${
+                    syncStatus === 'syncing' ? 'bg-blue-500 text-white animate-pulse' :
+                    syncStatus === 'success' ? 'bg-green-500 text-white' :
+                    'bg-red-500 text-white'
+                  }`}>
+                    {syncStatus === 'syncing' ? '...' : syncStatus === 'success' ? '✓' : '✗'}
+                  </span>
                 )}
               </button>
             </div>
