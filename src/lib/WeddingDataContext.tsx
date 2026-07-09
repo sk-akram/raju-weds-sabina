@@ -33,7 +33,12 @@ export function WeddingDataProvider({ children }: { children: React.ReactNode })
   const [error, setError] = useState<string | null>(null);
 
   const sanitizeSheetData = (sheetData: Record<string, string>): Record<string, string> => {
-    return sheetData;
+    // Merge sheet data with DEFAULT_SYNC_DATA to preserve default values for missing keys
+    const result: Record<string, string> = {};
+    Object.entries(DEFAULT_SYNC_DATA).forEach(([key, item]) => {
+      result[key] = sheetData[key] !== undefined ? sheetData[key] : item.val;
+    });
+    return result;
   };
 
   const loadData = async () => {
@@ -42,10 +47,7 @@ export function WeddingDataProvider({ children }: { children: React.ReactNode })
       const sheetData = await fetchPublicSheetData(SPREADSHEET_ID);
       if (sheetData && Object.keys(sheetData).length > 0) {
         const sanitized = sanitizeSheetData(sheetData);
-        setData(prev => ({
-          ...prev,
-          ...sanitized
-        }));
+        setData(sanitized);
         setIsSynced(true);
         setError(null);
       } else {
