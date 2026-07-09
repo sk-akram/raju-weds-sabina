@@ -268,6 +268,14 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
           <span className="text-[10px] font-mono tracking-widest text-gold-400 uppercase">Ceremony Schedule</span>
           <h2 className="text-3xl md:text-4xl font-serif text-gold-100 font-bold tracking-wide mt-1">{showNikah ? 'Nikah & Walima' : 'Walima Reception'}</h2>
           <div className="h-[1px] w-24 bg-gold-400/30 mx-auto mt-4" />
+          <p className="text-gold-300/70 text-sm mt-4">View the complete 4-day wedding ceremony schedule with all events and timings</p>
+          <a
+            href="/schedule"
+            className="inline-flex items-center gap-2 mt-4 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-300 text-emerald-950 font-semibold py-2.5 px-6 rounded-full shadow-[0_4px_15px_rgba(207,155,58,0.3)] transition-all duration-300 hover:scale-105"
+          >
+            <Calendar size={16} />
+            <span>View Full Schedule</span>
+          </a>
         </div>
 
         <div className={`grid gap-8 items-stretch ${showNikah ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 max-w-md mx-auto'}`}>
