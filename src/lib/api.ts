@@ -69,18 +69,7 @@ export async function likeGuestbookEntry(id: string): Promise<{ success: boolean
   }
 }
 
-// RSVP API
-export async function fetchRSVPs(): Promise<RSVPEntry[]> {
-  try {
-    const response = await fetch(`${API_BASE_URL}/api/rsvp`);
-    if (!response.ok) throw new Error('Failed to fetch RSVPs');
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching RSVPs:', error);
-    return [];
-  }
-}
-
+// RSVP API - POST only (RSVPs are private)
 export async function saveRSVP(data: RSVPEntry): Promise<{ success: boolean; id?: string }> {
   try {
     const response = await fetch(`${API_BASE_URL}/api/rsvp`, {

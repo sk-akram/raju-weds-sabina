@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, Users, ClipboardCheck, Sparkles, AlertCircle, Edit, Trash2 } from 'lucide-react';
 import { RSVP, AttendanceStatus } from '../types';
-import { fetchRSVPs, saveRSVP, deleteRSVP } from '../lib/api';
+import { saveRSVP, deleteRSVP } from '../lib/api';
 
 interface RSVPFormProps {
   showNikah?: boolean;
@@ -30,15 +30,16 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle');
 
   useEffect(() => {
-    loadRSVPs();
-  }, []);
-
-  const loadRSVPs = async () => {
-    const rsvps = await fetchRSVPs();
-    if (rsvps.length > 0) {
-      setSavedRSVP(rsvps[0]);
+    // Load saved RSVP from localStorage only (RSVPs are private)
+    const saved = localStorage.getItem('raju_sabina_wedding_rsvp');
+    if (saved) {
+      try {
+        setSavedRSVP(JSON.parse(saved));
+      } catch (e) {
+        console.error('Failed to parse saved RSVP', e);
+      }
     }
-  };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -100,7 +101,7 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
     if (result.success) {
       setSyncStatus('success');
       setSavedRSVP(newRSVP);
-      await loadRSVPs();
+      localStorage.setItem('raju_sabina_wedding_rsvp', JSON.stringify(newRSVP));
     } else {
       setSyncStatus('error');
     }
@@ -128,6 +129,7 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
     if (window.confirm('Are you sure you want to withdraw your RSVP?') && savedRSVP) {
       await deleteRSVP(savedRSVP.id);
       setSavedRSVP(null);
+      localStorage.removeItem('raju_sabina_wedding_rsvp');
       setFormData({
         fullName: '',
         email: '',
@@ -137,7 +139,6 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
         dietaryPref: 'halal',
         prayer: '',
       });
-      await loadRSVPs();
     }
   };
 

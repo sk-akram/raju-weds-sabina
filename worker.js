@@ -73,20 +73,6 @@ export default {
 
     // RSVP endpoints
     if (url.pathname === '/api/rsvp') {
-      if (request.method === 'GET') {
-        try {
-          const { results } = await env.DB.prepare('SELECT * FROM rsvp ORDER BY created_at DESC').all();
-          return new Response(JSON.stringify(results), {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-          });
-        } catch (error) {
-          return new Response(JSON.stringify({ error: error.message }), {
-            status: 500,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-          });
-        }
-      }
-
       if (request.method === 'POST') {
         try {
           const data = await request.json();
