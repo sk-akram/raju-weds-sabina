@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build && npm run copy-images",
-    "copy-images": "powershell -Command \"if (!(Test-Path dist\\images)) { New-Item -ItemType Directory -Path dist\\images }; Copy-Item public\\images\\*.jpg dist\\images\\\"",
+    "build": "vite build && node scripts/copy-images.js",
+    "copy-images": "node scripts/copy-images.js",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
