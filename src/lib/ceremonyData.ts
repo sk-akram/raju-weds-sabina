@@ -122,7 +122,7 @@ export const weddingCeremonies = [
   {
     day: "Day 4 - Saturday, August 8",
     date: "Walima",
-    venue: "Walima Hall",
+    venue: "Gulmohar Garden, Pairagachha, Dankuni, West Bengal 712304",
     events: [
       {
         time: "9:00 AM",
@@ -132,7 +132,7 @@ export const weddingCeremonies = [
       {
         time: "12:00 PM",
         event: "Couple's Arrival",
-        details: "Groom and bride arrive at the Walima hall."
+        details: "Groom and bride arrive at the venue."
       },
       {
         time: "12:00 PM onwards",
