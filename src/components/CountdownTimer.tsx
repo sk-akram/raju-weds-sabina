@@ -95,8 +95,8 @@ export default function CountdownTimer({ showNikah = true }: CountdownTimerProps
       'DTSTART:20260808T063000Z', // Walima Reception Aug 8, 2026, 12:00 PM IST is 6:30 AM UTC
       'DTEND:20260808T093000Z',
       'SUMMARY:Walima Reception - Sk Raju & Sabina Khatun',
-      'DESCRIPTION:Join us for the joyous Walima wedding reception of Sk Raju and Sabina Khatun at Walima Hall, Hooghly.',
-      'LOCATION:Walima Hall, Hooghly, West Bengal, India',
+      'DESCRIPTION:Join us for the joyous Walima wedding reception of Sk Raju and Sabina Khatun at Gulmohar Garden, Pairagachha, Dankuni.',
+      'LOCATION:Gulmohar Garden, Pairagachha, Dankuni, West Bengal 712304',
       'SEQUENCE:0',
       'STATUS:CONFIRMED',
       'TRANSP:OPAQUE',
@@ -127,8 +127,8 @@ export default function CountdownTimer({ showNikah = true }: CountdownTimerProps
       const start = '20260808T063000Z';
       const end = '20260808T093000Z';
       const title = encodeURIComponent('Walima Reception - Sk Raju & Sabina');
-      const details = encodeURIComponent('Join us for the joyous Walima wedding reception of Sk Raju and Sabina Khatun at Walima Hall, Hooghly.');
-      const location = encodeURIComponent('Walima Hall, Hooghly, West Bengal, India');
+      const details = encodeURIComponent('Join us for the joyous Walima wedding reception of Sk Raju and Sabina Khatun at Gulmohar Garden, Pairagachha, Dankuni.');
+      const location = encodeURIComponent('Gulmohar Garden, Pairagachha, Dankuni, West Bengal 712304');
       return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}&sf=true&output=xml`;
     }
   };
@@ -290,7 +290,7 @@ export default function CountdownTimer({ showNikah = true }: CountdownTimerProps
       <div className="text-xs text-center text-gold-300/60 font-serif italic mt-6 max-w-md relative z-10">
         {showNikah
           ? "Insha'Allah on Friday, August 7, 2026 at 5:30 PM IST — Nikah Ceremony at Gulmohar Garden."
-          : "Insha'Allah on Saturday, August 8, 2026 at 12:00 PM IST — Walima Reception at Walima Hall."
+          : "Insha'Allah on Saturday, August 8, 2026 at 12:00 PM IST — Walima Reception at Gulmohar Garden."
         }
       </div>
     </div>

@@ -130,7 +130,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
             </span>
             <span className="text-xs font-sans text-gold-300/80 mt-1 flex items-center gap-1.5 justify-center">
               <MapPin size={12} className="text-gold-400" />
-              Pandua, Hooghly • Gulmohar Garden • Walima Hall
+              Gulmohar Garden, Pairagachha, Dankuni
             </span>
           </div>
         </motion.div>
@@ -410,7 +410,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                     </div>
                     <div>
                       <span className="text-[10px] text-gold-400 block font-mono">Place</span>
-                      <span className="text-xs text-gold-100 font-semibold">Walima Hall, Hooghly</span>
+                      <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden, Pairagachha, Dankuni</span>
                     </div>
                   </div>
 
