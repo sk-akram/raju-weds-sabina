@@ -7,14 +7,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, Users, ClipboardCheck, Sparkles, AlertCircle, Edit, Trash2 } from 'lucide-react';
 import { RSVP, AttendanceStatus } from '../types';
-import { useWeddingData } from '../lib/WeddingDataContext';
+import { fetchRSVPs, saveRSVP, deleteRSVP } from '../lib/api';
 
 interface RSVPFormProps {
   showNikah?: boolean;
 }
 
 export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
-  const { data, updateLocalData, pushToSheet, isAuthenticated, signIn } = useWeddingData();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -31,18 +30,15 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle');
 
   useEffect(() => {
-    try {
-      const rsvpData = data['rsvp_entries'] || '[]';
-      const parsed = JSON.parse(rsvpData);
-      const rsvps = Array.isArray(parsed) ? parsed : [];
-      // For now, just use the first RSVP if exists (single user RSVP)
-      if (rsvps.length > 0) {
-        setSavedRSVP(rsvps[0]);
-      }
-    } catch (e) {
-      console.error('Failed to parse RSVP entries', e);
+    loadRSVPs();
+  }, []);
+
+  const loadRSVPs = async () => {
+    const rsvps = await fetchRSVPs();
+    if (rsvps.length > 0) {
+      setSavedRSVP(rsvps[0]);
     }
-  }, [data]);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -89,45 +85,27 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
       createdAt: new Date().toISOString(),
     };
 
-    // Save to Google Sheets via WeddingDataContext
-    try {
-      const rsvpData = data['rsvp_entries'] || '[]';
-      const parsed = JSON.parse(rsvpData);
-      const rsvps = Array.isArray(parsed) ? parsed : [];
-      
-      // Update existing RSVP or add new one
-      const updatedRSVPs = savedRSVP 
-        ? rsvps.map((r: RSVP) => r.id === newRSVP.id ? newRSVP : r)
-        : [newRSVP, ...rsvps];
-      
-      updateLocalData({ rsvp_entries: JSON.stringify(updatedRSVPs) });
-      setSavedRSVP(newRSVP);
+    const result = await saveRSVP({
+      id: newRSVP.id,
+      full_name: newRSVP.fullName,
+      email: newRSVP.email,
+      phone: newRSVP.phone,
+      attendance: newRSVP.attendance,
+      guests_count: newRSVP.guestsCount,
+      dietary_pref: newRSVP.dietaryPref,
+      prayer: newRSVP.prayer,
+      created_at: newRSVP.createdAt,
+    });
 
-      // Try to push to Google Sheet if authenticated
-      if (isAuthenticated) {
-        const success = await pushToSheet();
-        setSyncStatus(success ? 'success' : 'error');
-      } else {
-        // Try to sign in automatically for sheet sync
-        const signedIn = await signIn();
-        if (signedIn) {
-          const success = await pushToSheet();
-          setSyncStatus(success ? 'success' : 'error');
-        } else {
-          setSyncStatus('idle'); // Not authenticated, saved locally only
-        }
-      }
-    } catch (e) {
-      console.error('Failed to save RSVP to sheets', e);
-      setSyncStatus('error');
-      // Fallback to localStorage
-      localStorage.setItem('raju_sabina_wedding_rsvp', JSON.stringify(newRSVP));
+    if (result.success) {
+      setSyncStatus('success');
       setSavedRSVP(newRSVP);
+      await loadRSVPs();
+    } else {
+      setSyncStatus('error');
     }
 
     setIsSubmitting(false);
-
-    // Clear sync status after 3 seconds
     setTimeout(() => setSyncStatus('idle'), 3000);
   };
 
@@ -146,9 +124,9 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
     }
   };
 
-  const handleDelete = () => {
-    if (window.confirm('Are you sure you want to withdraw your RSVP?')) {
-      localStorage.removeItem('raju_sabina_wedding_rsvp');
+  const handleDelete = async () => {
+    if (window.confirm('Are you sure you want to withdraw your RSVP?') && savedRSVP) {
+      await deleteRSVP(savedRSVP.id);
       setSavedRSVP(null);
       setFormData({
         fullName: '',
@@ -159,6 +137,7 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
         dietaryPref: 'halal',
         prayer: '',
       });
+      await loadRSVPs();
     }
   };
 

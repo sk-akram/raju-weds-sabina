@@ -18,7 +18,6 @@ import Storyline from './components/Storyline';
 import ScratchCard from './components/ScratchCard';
 import RoyalEnvelope from './components/RoyalEnvelope';
 import ThemeSwitcher, { THEMES } from './components/ThemeSwitcher';
-import SheetsSyncManager from './components/SheetsSyncManager';
 import { WeddingDataProvider, useWeddingData } from './lib/WeddingDataContext';
 
 function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
@@ -540,9 +539,6 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
           Envelope Invite
         </span>
       </button>
-
-      {/* Google Sheets Sync Manager */}
-      <SheetsSyncManager />
 
           </motion.div>
         )}

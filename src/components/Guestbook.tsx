@@ -5,12 +5,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MessageSquare, Heart, Send, Sparkles, UserCheck } from 'lucide-react';
+import { MessageSquare, Heart, Send, Sparkles } from 'lucide-react';
 import { GuestbookMessage, GuestRelationship } from '../types';
-import { useWeddingData } from '../lib/WeddingDataContext';
+import { fetchGuestbook, createGuestbookEntry, likeGuestbookEntry } from '../lib/api';
 
 export default function Guestbook() {
-  const { data, updateLocalData, pushToSheet, isAuthenticated, signIn } = useWeddingData();
   const [messages, setMessages] = useState<GuestbookMessage[]>([]);
   const [name, setName] = useState('');
   const [relationship, setRelationship] = useState<GuestRelationship>(GuestRelationship.WELL_WISHER);
@@ -19,15 +18,20 @@ export default function Guestbook() {
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error'>('idle');
 
   useEffect(() => {
-    try {
-      const guestbookData = data['guestbook_entries'] || '[]';
-      const parsed = JSON.parse(guestbookData);
-      setMessages(Array.isArray(parsed) ? parsed : []);
-    } catch (e) {
-      console.error('Failed to parse guestbook messages', e);
-      setMessages([]);
-    }
-  }, [data]);
+    loadGuestbook();
+  }, []);
+
+  const loadGuestbook = async () => {
+    const entries = await fetchGuestbook();
+    setMessages(entries.map(e => ({
+      id: e.id,
+      name: e.name,
+      relationship: e.relationship as GuestRelationship,
+      message: e.message,
+      createdAt: e.created_at,
+      likes: e.likes,
+    })));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,58 +40,29 @@ export default function Guestbook() {
     setIsSubmitting(true);
     setSyncStatus('syncing');
 
-    const newMessage: GuestbookMessage = {
-      id: Math.random().toString(36).substring(2, 9),
+    const result = await createGuestbookEntry({
       name: name.trim(),
       relationship,
       message: messageText.trim(),
-      createdAt: new Date().toISOString(),
-      likes: 0,
-    };
+    });
 
-    const updated = [newMessage, ...messages];
-    setMessages(updated);
-    updateLocalData({ guestbook_entries: JSON.stringify(updated) });
-
-    // Try to push to Google Sheet if authenticated
-    if (isAuthenticated) {
-      const success = await pushToSheet();
-      setSyncStatus(success ? 'success' : 'error');
+    if (result.success) {
+      setSyncStatus('success');
+      setName('');
+      setMessageText('');
+      setRelationship(GuestRelationship.WELL_WISHER);
+      await loadGuestbook();
     } else {
-      // Try to sign in automatically for sheet sync
-      const signedIn = await signIn();
-      if (signedIn) {
-        const success = await pushToSheet();
-        setSyncStatus(success ? 'success' : 'error');
-      } else {
-        setSyncStatus('idle'); // Not authenticated, saved locally only
-      }
+      setSyncStatus('error');
     }
 
-    // Reset fields
-    setName('');
-    setMessageText('');
-    setRelationship(GuestRelationship.WELL_WISHER);
     setIsSubmitting(false);
-
-    // Clear sync status after 3 seconds
     setTimeout(() => setSyncStatus('idle'), 3000);
   };
 
   const handleLike = async (id: string) => {
-    const updated = messages.map((msg) => {
-      if (msg.id === id) {
-        return { ...msg, likes: msg.likes + 1 };
-      }
-      return msg;
-    });
-    setMessages(updated);
-    updateLocalData({ guestbook_entries: JSON.stringify(updated) });
-
-    // Try to push to Google Sheet if authenticated
-    if (isAuthenticated) {
-      await pushToSheet();
-    }
+    await likeGuestbookEntry(id);
+    await loadGuestbook();
   };
 
   const relationshipLabels = {
@@ -226,7 +201,7 @@ export default function Guestbook() {
                 <div className="flex items-start justify-between gap-4 mb-2">
                   <div>
                     <h5 className="font-serif text-sm text-gold-100 font-semibold flex items-center gap-1.5">
-                      <UserCheck size={14} className="text-gold-400" />
+                      <MessageSquare size={14} className="text-gold-400" />
                       {msg.name}
                     </h5>
                     <span className="text-[9px] font-mono text-gold-300/50 mt-0.5 block">
