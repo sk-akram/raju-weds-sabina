@@ -226,8 +226,8 @@ export async function fetchAuthSheetData(spreadsheetId: string, accessToken: str
   if (!response.ok) {
     throw new Error('Failed to retrieve spreadsheet. Ensure the sheet tab is named "Sheet1".');
   }
-  const data = await response.json();
-  return transformToSyncMap(data.values);
+  const data = await response.json() as { values?: string[][] };
+  return transformToSyncMap(data.values || []);
 }
 
 /**
@@ -244,7 +244,7 @@ export async function checkIfSheetEmptyOrNew(spreadsheetId: string, accessToken:
       }
     );
     if (!response.ok) return true; // Treat error as needing initialization
-    const data = await response.json();
+    const data = await response.json() as { values?: string[][] };
     return !data.values || data.values.length <= 1;
   } catch (e) {
     return true;
