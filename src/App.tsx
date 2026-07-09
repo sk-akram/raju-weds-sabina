@@ -18,6 +18,7 @@ import Storyline from './components/Storyline';
 import ScratchCard from './components/ScratchCard';
 import RoyalEnvelope from './components/RoyalEnvelope';
 import ThemeSwitcher, { THEMES } from './components/ThemeSwitcher';
+import WeddingDaySchedule from './components/WeddingDaySchedule';
 import { WeddingDataProvider, useWeddingData } from './lib/WeddingDataContext';
 
 function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
@@ -554,6 +555,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<WeddingApp showNikah={true} />} />
         <Route path="/walima" element={<WeddingApp showNikah={false} />} />
+        <Route path="/schedule" element={<WeddingDaySchedule />} />
       </Routes>
     </WeddingDataProvider>
   );

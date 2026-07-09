@@ -10,7 +10,7 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
   groom_name: { val: "Sk Raju", category: "General", desc: "Full name of the Groom" },
   bride_name: { val: "Sabina Khatun", category: "General", desc: "Full name of the Bride" },
   wedding_date: { val: "Friday, August 7, 2026", category: "General", desc: "Wedding Ceremony Date text" },
-  venue_name: { val: "Gulmohar Garden", category: "General", desc: "Name of the Venue" },
+  venue_name: { val: "Gulmohar Garden, Pairagachha, Dankuni, West Bengal 712304", category: "General", desc: "Name of the Venue" },
   venue_address: { val: "Gulmohar Garden, Pairagachha, Dankuni, West Bengal 712304", category: "General", desc: "Full Address of the Venue" },
   venue_lat: { val: "22.7054674", category: "General", desc: "Venue Latitude for Map (e.g. 22.75)" },
   venue_lng: { val: "88.2616727", category: "General", desc: "Venue Longitude for Map (e.g. 88.34)" },
