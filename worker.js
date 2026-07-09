@@ -71,6 +71,21 @@ export default {
       }
     }
 
+    // Clear all guestbook entries (admin endpoint)
+    if (url.pathname === '/api/guestbook/clear' && request.method === 'DELETE') {
+      try {
+        await env.DB.prepare('DELETE FROM guestbook').run();
+        return new Response(JSON.stringify({ success: true, message: 'All guestbook entries deleted' }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      } catch (error) {
+        return new Response(JSON.stringify({ error: error.message }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+    }
+
     // RSVP endpoints
     if (url.pathname === '/api/rsvp') {
       if (request.method === 'POST') {
@@ -112,6 +127,21 @@ export default {
         const id = url.pathname.split('/').pop();
         await env.DB.prepare('DELETE FROM rsvp WHERE id = ?').bind(id).run();
         return new Response(JSON.stringify({ success: true }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      } catch (error) {
+        return new Response(JSON.stringify({ error: error.message }), {
+          status: 500,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+    }
+
+    // Clear all RSVP entries (admin endpoint)
+    if (url.pathname === '/api/rsvp/clear' && request.method === 'DELETE') {
+      try {
+        await env.DB.prepare('DELETE FROM rsvp').run();
+        return new Response(JSON.stringify({ success: true, message: 'All RSVP entries deleted' }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         });
       } catch (error) {
