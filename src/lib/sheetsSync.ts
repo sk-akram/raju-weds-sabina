@@ -101,11 +101,11 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
   gallery1_caption: { val: "The Blessed Couple entering the Grand Banquet Hall", category: "Gallery", desc: "Image 1 Caption" },
   gallery1_category: { val: "Engagement", category: "Gallery", desc: "Image 1 Category (Blessed Beginnings, Shared Moments, Engagement)" },
 
-  gallery2_url: { val: "/src/assets/images/nikah_stage_1782331038747.jpg", category: "Gallery", desc: "Image 2 URL" },
+  gallery2_url: { val: "/images/nikah_stage.jpg", category: "Gallery", desc: "Image 2 URL" },
   gallery2_caption: { val: "Nikah Stage - Traditional Low Seating & Soft Drapes", category: "Gallery", desc: "Image 2 Caption" },
   gallery2_category: { val: "Blessed Beginnings", category: "Gallery", desc: "Image 2 Category" },
 
-  gallery3_url: { val: "/src/assets/images/walima_banquet_1782331057014.jpg", category: "Gallery", desc: "Image 3 URL" },
+  gallery3_url: { val: "/images/walima_banquet.jpg", category: "Gallery", desc: "Image 3 URL" },
   gallery3_caption: { val: "Walima Reception Banquet - Emerald and Gold Tableware", category: "Gallery", desc: "Image 3 Caption" },
   gallery3_category: { val: "Shared Moments", category: "Gallery", desc: "Image 3 Category" },
 
@@ -127,7 +127,11 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
 
   gallery8_url: { val: "https://picsum.photos/seed/weddingrose/800/1200", category: "Gallery", desc: "Image 8 URL" },
   gallery8_caption: { val: "Fresh White & Blush Roses representing Rahmah and Sakinah", category: "Gallery", desc: "Image 8 Caption" },
-  gallery8_category: { val: "Shared Moments", category: "Gallery", desc: "Image 8 Category" }
+  gallery8_category: { val: "Shared Moments", category: "Gallery", desc: "Image 8 Category" },
+
+  guestbook_entries: { val: "[]", category: "Guestbook", desc: "JSON array of guestbook entries" },
+
+  rsvp_entries: { val: "[]", category: "RSVP", desc: "JSON array of RSVP entries" }
 };
 
 // Parse local memory values back from spreadsheet data

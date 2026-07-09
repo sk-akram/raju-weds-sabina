@@ -7,30 +7,26 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, Heart, Send, Sparkles, UserCheck } from 'lucide-react';
 import { GuestbookMessage, GuestRelationship } from '../types';
+import { useWeddingData } from '../lib/WeddingDataContext';
 
 export default function Guestbook() {
+  const { data, updateLocalData } = useWeddingData();
   const [messages, setMessages] = useState<GuestbookMessage[]>([]);
   const [name, setName] = useState('');
   const [relationship, setRelationship] = useState<GuestRelationship>(GuestRelationship.WELL_WISHER);
   const [messageText, setMessageText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const defaultMessages: GuestbookMessage[] = [];
-
   useEffect(() => {
-    const saved = localStorage.getItem('raju_sabina_wedding_guestbook');
-    if (saved) {
-      try {
-        setMessages(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to parse guestbook messages', e);
-        setMessages(defaultMessages);
-      }
-    } else {
-      setMessages(defaultMessages);
-      localStorage.setItem('raju_sabina_wedding_guestbook', JSON.stringify(defaultMessages));
+    try {
+      const guestbookData = data['guestbook_entries'] || '[]';
+      const parsed = JSON.parse(guestbookData);
+      setMessages(Array.isArray(parsed) ? parsed : []);
+    } catch (e) {
+      console.error('Failed to parse guestbook messages', e);
+      setMessages([]);
     }
-  }, []);
+  }, [data]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,7 +46,7 @@ export default function Guestbook() {
 
       const updated = [newMessage, ...messages];
       setMessages(updated);
-      localStorage.setItem('raju_sabina_wedding_guestbook', JSON.stringify(updated));
+      updateLocalData({ guestbook_entries: JSON.stringify(updated) });
 
       // Reset fields
       setName('');
@@ -68,7 +64,7 @@ export default function Guestbook() {
       return msg;
     });
     setMessages(updated);
-    localStorage.setItem('raju_sabina_wedding_guestbook', JSON.stringify(updated));
+    updateLocalData({ guestbook_entries: JSON.stringify(updated) });
   };
 
   const relationshipLabels = {

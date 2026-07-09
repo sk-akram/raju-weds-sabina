@@ -35,25 +35,27 @@ export default function VenueMap({ showNikah = true }: VenueMapProps) {
     },
     {
       name: "Gulmohar Garden",
-      address: "Hooghly, West Bengal",
-      lat: 23.2432,
-      lng: 88.3789,
+      address: "Pairagachha, Dankuni, West Bengal 712304",
+      lat: 22.7123,
+      lng: 88.3745,
       event: "Main Wedding Day",
-      days: "Aug 7"
+      days: "Aug 7",
+      googleMapsLink: "https://share.google/2VCrMg3sJXrbq1c6J"
     },
     {
-      name: "Walima Hall",
-      address: "Hooghly, West Bengal",
-      lat: 23.2432,
-      lng: 88.3789,
+      name: "Gulmohar Garden",
+      address: "Pairagachha, Dankuni, West Bengal 712304",
+      lat: 22.7123,
+      lng: 88.3745,
       event: "Walima Reception",
-      days: "Aug 8"
+      days: "Aug 8",
+      googleMapsLink: "https://share.google/2VCrMg3sJXrbq1c6J"
     }
   ];
 
   // Filter venues based on showNikah prop
-  const venues = showNikah ? allVenues : allVenues.filter(v => v.name === "Walima Hall");
-  const [selectedVenue, setSelectedVenue] = useState(venues[showNikah ? 2 : 0]); // Default to Gulmohar Garden or Walima Hall
+  const venues = showNikah ? allVenues : allVenues.filter(v => v.event === "Walima Reception");
+  const [selectedVenue, setSelectedVenue] = useState(venues[showNikah ? 2 : 0]); // Default to Gulmohar Garden
 
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(selectedVenue.address);

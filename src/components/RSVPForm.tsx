@@ -7,12 +7,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, Users, ClipboardCheck, Sparkles, AlertCircle, Edit, Trash2 } from 'lucide-react';
 import { RSVP, AttendanceStatus } from '../types';
+import { useWeddingData } from '../lib/WeddingDataContext';
 
 interface RSVPFormProps {
   showNikah?: boolean;
 }
 
 export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
+  const { data, updateLocalData } = useWeddingData();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -28,15 +30,18 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    const existing = localStorage.getItem('raju_sabina_wedding_rsvp');
-    if (existing) {
-      try {
-        setSavedRSVP(JSON.parse(existing));
-      } catch (e) {
-        console.error('Failed to parse existing RSVP from local storage', e);
+    try {
+      const rsvpData = data['rsvp_entries'] || '[]';
+      const parsed = JSON.parse(rsvpData);
+      const rsvps = Array.isArray(parsed) ? parsed : [];
+      // For now, just use the first RSVP if exists (single user RSVP)
+      if (rsvps.length > 0) {
+        setSavedRSVP(rsvps[0]);
       }
+    } catch (e) {
+      console.error('Failed to parse RSVP entries', e);
     }
-  }, []);
+  }, [data]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -83,8 +88,26 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
         createdAt: new Date().toISOString(),
       };
 
-      localStorage.setItem('raju_sabina_wedding_rsvp', JSON.stringify(newRSVP));
-      setSavedRSVP(newRSVP);
+      // Save to Google Sheets via WeddingDataContext
+      try {
+        const rsvpData = data['rsvp_entries'] || '[]';
+        const parsed = JSON.parse(rsvpData);
+        const rsvps = Array.isArray(parsed) ? parsed : [];
+        
+        // Update existing RSVP or add new one
+        const updatedRSVPs = savedRSVP 
+          ? rsvps.map((r: RSVP) => r.id === newRSVP.id ? newRSVP : r)
+          : [newRSVP, ...rsvps];
+        
+        updateLocalData({ rsvp_entries: JSON.stringify(updatedRSVPs) });
+        setSavedRSVP(newRSVP);
+      } catch (e) {
+        console.error('Failed to save RSVP to sheets', e);
+        // Fallback to localStorage
+        localStorage.setItem('raju_sabina_wedding_rsvp', JSON.stringify(newRSVP));
+        setSavedRSVP(newRSVP);
+      }
+
       setIsSubmitting(false);
     }, 1200);
   };
@@ -344,7 +367,6 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
                   >
                     <option value="halal">Traditional Halal (Non-Veg)</option>
                     <option value="vegetarian">Pure Vegetarian</option>
-                    <option value="vegan">Vegan</option>
                     <option value="none">No Specific Restrictions</option>
                   </select>
                 </div>
@@ -408,7 +430,7 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
                 ) : (
                   <>
                     <ClipboardCheck size={18} />
-                    <span>Confirm Attendance</span>
+                    <span>Confirm</span>
                     <Sparkles size={14} className="absolute right-4 animate-pulse text-gold-300" />
                   </>
                 )}
