@@ -169,7 +169,9 @@ export default function ThemeSwitcher({ currentThemeId, onThemeChange, showNikah
                       src={t.id === 'nikah' ? data['nikah_theme_image'] || '/images/Nikah.png' : data['walima_theme_image'] || '/images/Walima.png'}
                       alt={t.name}
                       className="w-full h-full object-cover"
+                      onLoad={() => console.log(`Loaded theme image for ${t.id}:`, t.id === 'nikah' ? data['nikah_theme_image'] : data['walima_theme_image'])}
                       onError={(e) => {
+                        console.error(`Failed to load theme image for ${t.id}:`, t.id === 'nikah' ? data['nikah_theme_image'] : data['walima_theme_image']);
                         e.currentTarget.style.display = 'none';
                       }}
                     />
