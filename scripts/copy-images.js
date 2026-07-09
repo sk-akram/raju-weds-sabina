@@ -9,10 +9,10 @@ if (!fs.existsSync(targetDir)) {
   fs.mkdirSync(targetDir, { recursive: true });
 }
 
-// Copy all .jpg files
+// Copy all .jpg and .png files
 const files = fs.readdirSync(sourceDir);
 files.forEach(file => {
-  if (file.endsWith('.jpg')) {
+  if (file.endsWith('.jpg') || file.endsWith('.png')) {
     const sourcePath = path.join(sourceDir, file);
     const targetPath = path.join(targetDir, file);
     fs.copyFileSync(sourcePath, targetPath);

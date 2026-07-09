@@ -161,6 +161,18 @@ export default function ThemeSwitcher({ currentThemeId, onThemeChange, showNikah
                     ))}
                   </div>
 
+                  {/* Theme Image Preview */}
+                  <div className="mt-3 rounded-lg overflow-hidden border border-gold-400/20 relative h-24 bg-emerald-950/30">
+                    <img
+                      src={t.id === 'nikah' ? '/images/Nikah.png' : '/images/Walima.png'}
+                      alt={t.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  </div>
+
                   {/* Tiny Arabic calligraphy watermarked */}
                   <span className="absolute bottom-1 right-2 text-[10px] font-serif italic text-gold-400/5 select-none pointer-events-none">
                     {t.arabicName}
