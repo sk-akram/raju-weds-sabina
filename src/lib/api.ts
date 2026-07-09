@@ -2,7 +2,7 @@
  * API client for D1 database operations
  */
 
-const API_BASE_URL = window.location.origin;
+const API_BASE_URL = 'https://raju-weds-sabina.skakram1110.workers.dev';
 
 export interface GuestbookEntry {
   id: string;
