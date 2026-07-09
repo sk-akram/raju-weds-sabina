@@ -161,7 +161,10 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
           {...fadeInUp}
           className="text-center max-w-3xl mx-auto mb-20"
         >
-          <p className="text-gold-300 font-serif text-lg md:text-xl leading-relaxed italic mb-4">
+          <p className="text-gold-300 font-serif text-lg md:text-xl leading-relaxed italic mb-2">
+            "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً"
+          </p>
+          <p className="text-gold-300/80 font-serif text-base md:text-lg leading-relaxed italic mb-4">
             "And among His signs is this, that He created for you mates from among yourselves, that you may dwell in tranquility with them; and He has put love and mercy between your hearts."
           </p>
           <span className="text-xs font-mono text-gold-400 tracking-widest uppercase">

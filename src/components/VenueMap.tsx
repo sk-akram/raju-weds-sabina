@@ -36,20 +36,20 @@ export default function VenueMap({ showNikah = true }: VenueMapProps) {
     {
       name: "Gulmohar Garden",
       address: "Pairagachha, Dankuni, West Bengal 712304",
-      lat: 22.7123,
-      lng: 88.3745,
+      lat: 22.7054674,
+      lng: 88.2616727,
       event: "Main Wedding Day",
       days: "Aug 7",
-      googleMapsLink: "https://share.google/2VCrMg3sJXrbq1c6J"
+      googleMapsLink: "https://www.google.com/maps/place/Gulmohar+Garden+Resort+%26+Banquets+%7C+Best+Banquets+in+Kolkata/@22.7054674,88.2590978,702m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f883c603cd769b:0xbbbb4d06ef362ae0!8m2!3d22.7054674!4d88.2616727!16s%2Fg%2F11zhnrkct1?hl=en-IN&entry=ttu"
     },
     {
       name: "Gulmohar Garden",
       address: "Pairagachha, Dankuni, West Bengal 712304",
-      lat: 22.7123,
-      lng: 88.3745,
+      lat: 22.7054674,
+      lng: 88.2616727,
       event: "Walima Reception",
       days: "Aug 8",
-      googleMapsLink: "https://share.google/2VCrMg3sJXrbq1c6J"
+      googleMapsLink: "https://www.google.com/maps/place/Gulmohar+Garden+Resort+%26+Banquets+%7C+Best+Banquets+in+Kolkata/@22.7054674,88.2590978,702m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f883c603cd769b:0xbbbb4d06ef362ae0!8m2!3d22.7054674!4d88.2616727!16s%2Fg%2F11zhnrkct1?hl=en-IN&entry=ttu"
     }
   ];
 
@@ -100,10 +100,11 @@ export default function VenueMap({ showNikah = true }: VenueMapProps) {
         {/* Embedded Map */}
         <iframe
           title="Wedding Venue Map"
-          src={`https://www.openstreetmap.org/export/embed.html?bbox=${selectedVenue.lng-0.015}%2C${selectedVenue.lat-0.01}%2C${selectedVenue.lng+0.015}%2C${selectedVenue.lat+0.01}&layer=mapnik&marker=${selectedVenue.lat}%2C${selectedVenue.lng}`}
-          className="w-full h-full border-0 filter grayscale contrast-115"
+          src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.123456789!2d${selectedVenue.lng}!3d${selectedVenue.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCcDQyJzE5LjciTiA4OMKwMTUnNDIuMCJF!5e0!3m2!1sen!2sin!4v1234567890`}
+          className="w-full h-full border-0"
           allowFullScreen
           loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
         />
 
         {/* Floating Map Label */}

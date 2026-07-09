@@ -65,10 +65,10 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
   groom_name: { val: "Sk Raju", category: "General", desc: "Full name of the Groom" },
   bride_name: { val: "Sabina Khatun", category: "General", desc: "Full name of the Bride" },
   wedding_date: { val: "Friday, August 7, 2026", category: "General", desc: "Wedding Ceremony Date text" },
-  venue_name: { val: "Serampore Alcove, New Kolkata", category: "General", desc: "Name of the Venue" },
-  venue_address: { val: "Serampore Alcove, New Kolkata, West Bengal, India", category: "General", desc: "Full Address of the Venue" },
-  venue_lat: { val: "22.75", category: "General", desc: "Venue Latitude for Map (e.g. 22.75)" },
-  venue_lng: { val: "88.34", category: "General", desc: "Venue Longitude for Map (e.g. 88.34)" },
+  venue_name: { val: "Gulmohar Garden", category: "General", desc: "Name of the Venue" },
+  venue_address: { val: "Gulmohar Garden, Pairagachha, Dankuni, West Bengal 712304", category: "General", desc: "Full Address of the Venue" },
+  venue_lat: { val: "22.7054674", category: "General", desc: "Venue Latitude for Map (e.g. 22.75)" },
+  venue_lng: { val: "88.2616727", category: "General", desc: "Venue Longitude for Map (e.g. 88.34)" },
   bismillah_text: { val: "بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ", category: "General", desc: "Bismillah Arabic greeting text" },
   bismillah_translation: { val: "In the name of Allah, the Most Gracious, the Most Merciful", category: "General", desc: "Bismillah English Translation" },
   scratch_reward_title: { val: "You are cordially invited to celebrate with us!", category: "General", desc: "Revealed message when card is scratched" },
@@ -101,11 +101,11 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
   gallery1_caption: { val: "The Blessed Couple entering the Grand Banquet Hall", category: "Gallery", desc: "Image 1 Caption" },
   gallery1_category: { val: "Engagement", category: "Gallery", desc: "Image 1 Category (Blessed Beginnings, Shared Moments, Engagement)" },
 
-  gallery2_url: { val: "/images/nikah_stage.jpg", category: "Gallery", desc: "Image 2 URL" },
+  gallery2_url: { val: "https://lh3.googleusercontent.com/d/1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6", category: "Gallery", desc: "Image 2 URL" },
   gallery2_caption: { val: "Nikah Stage - Traditional Low Seating & Soft Drapes", category: "Gallery", desc: "Image 2 Caption" },
   gallery2_category: { val: "Blessed Beginnings", category: "Gallery", desc: "Image 2 Category" },
 
-  gallery3_url: { val: "/images/walima_banquet.jpg", category: "Gallery", desc: "Image 3 URL" },
+  gallery3_url: { val: "https://lh3.googleusercontent.com/d/1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS", category: "Gallery", desc: "Image 3 URL" },
   gallery3_caption: { val: "Walima Reception Banquet - Emerald and Gold Tableware", category: "Gallery", desc: "Image 3 Caption" },
   gallery3_category: { val: "Shared Moments", category: "Gallery", desc: "Image 3 Category" },
 
