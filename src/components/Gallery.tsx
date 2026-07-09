@@ -47,7 +47,7 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
 
     galleryItems.push({
       id: `item-${i}`,
-      url: data[urlKey] || fallbackUrl,
+      url: i === 2 ? (data['nikah_theme_image'] || fallbackUrl) : i === 3 ? (data['walima_theme_image'] || fallbackUrl) : (data[urlKey] || fallbackUrl),
       caption: data[captionKey] || fallbackCaption,
       category: (data[categoryKey] as any) || fallbackCategory,
     });
@@ -75,9 +75,9 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
     : ['all', 'pre-wedding', 'reception'];
 
   return (
-    <div className="w-full max-w-6xl mx-auto flex flex-col items-center">
+    <div className="w-full flex flex-col items-center">
       {/* Premium Category Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 mb-10 z-10">
+      <div className="flex flex-wrap items-center justify-center gap-2 mb-10 z-10 max-w-6xl mx-auto px-4">
         {categories.map((cat) => (
           <button
             key={cat}
