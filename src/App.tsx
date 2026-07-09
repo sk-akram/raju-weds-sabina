@@ -18,7 +18,6 @@ import Storyline from './components/Storyline';
 import ScratchCard from './components/ScratchCard';
 import RoyalEnvelope from './components/RoyalEnvelope';
 import ThemeSwitcher, { THEMES } from './components/ThemeSwitcher';
-import WeddingDaySchedule from './components/WeddingDaySchedule';
 import { WeddingDataProvider, useWeddingData } from './lib/WeddingDataContext';
 
 function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
@@ -268,14 +267,6 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
           <span className="text-[10px] font-mono tracking-widest text-gold-400 uppercase">Ceremony Schedule</span>
           <h2 className="text-3xl md:text-4xl font-serif text-gold-100 font-bold tracking-wide mt-1">{showNikah ? 'Nikah & Walima' : 'Walima Reception'}</h2>
           <div className="h-[1px] w-24 bg-gold-400/30 mx-auto mt-4" />
-          <p className="text-gold-300/70 text-sm mt-4">View the complete 4-day wedding ceremony schedule with all events and timings</p>
-          <a
-            href="/schedule"
-            className="inline-flex items-center gap-2 mt-4 bg-gradient-to-r from-gold-600 via-gold-400 to-gold-500 hover:from-gold-500 hover:to-gold-300 text-emerald-950 font-semibold py-2.5 px-6 rounded-full shadow-[0_4px_15px_rgba(207,155,58,0.3)] transition-all duration-300 hover:scale-105"
-          >
-            <Calendar size={16} />
-            <span>View Full Schedule</span>
-          </a>
         </div>
 
         <div className={`grid gap-8 items-stretch ${showNikah ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 max-w-md mx-auto'}`}>
@@ -327,7 +318,27 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                         <Clock size={14} />
                       </div>
                       <div>
-                        <span className="text-[10px] text-gold-400 block font-mono">Timing</span>
+                        <span className="text-[10px] text-gold-400 block font-mono">Haldi</span>
+                        <span className="text-xs text-gold-100 font-semibold">10:00 AM - 12:00 PM</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400">
+                        <Clock size={14} />
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gold-400 block font-mono">Kheer Pitha</span>
+                        <span className="text-xs text-gold-100 font-semibold">2:00 - 3:00 PM</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400">
+                        <Clock size={14} />
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gold-400 block font-mono">Nikah</span>
                         <span className="text-xs text-gold-100 font-semibold">5:30 PM IST</span>
                       </div>
                     </div>
@@ -338,7 +349,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                       </div>
                       <div>
                         <span className="text-[10px] text-gold-400 block font-mono">Place</span>
-                        <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden, Hooghly</span>
+                        <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden, Pairagachha, Dankuni, West Bengal 712304</span>
                       </div>
                     </div>
 
@@ -563,7 +574,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<WeddingApp showNikah={true} />} />
         <Route path="/walima" element={<WeddingApp showNikah={false} />} />
-        <Route path="/schedule" element={<WeddingDaySchedule />} />
       </Routes>
     </WeddingDataProvider>
   );
