@@ -131,7 +131,10 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
 
   guestbook_entries: { val: "[]", category: "Guestbook", desc: "JSON array of guestbook entries" },
 
-  rsvp_entries: { val: "[]", category: "RSVP", desc: "JSON array of RSVP entries" }
+  rsvp_entries: { val: "[]", category: "RSVP", desc: "JSON array of RSVP entries" },
+
+  nikah_theme_image: { val: "", category: "Theme", desc: "Google Drive URL for Nikah theme image" },
+  walima_theme_image: { val: "", category: "Theme", desc: "Google Drive URL for Walima theme image" }
 };
 
 // Parse local memory values back from spreadsheet data

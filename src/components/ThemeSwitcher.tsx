@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Heart, Check, Compass } from 'lucide-react';
+import { useWeddingData } from '../lib/WeddingDataContext';
 
 interface WeddingTheme {
   id: 'nikah' | 'walima';
@@ -71,6 +72,7 @@ interface ThemeSwitcherProps {
 }
 
 export default function ThemeSwitcher({ currentThemeId, onThemeChange, showNikah = true }: ThemeSwitcherProps) {
+  const { data } = useWeddingData();
   // Filter themes based on showNikah prop
   const availableThemes = showNikah ? THEMES : THEMES.filter(t => t.id === 'walima');
   return (
@@ -164,7 +166,7 @@ export default function ThemeSwitcher({ currentThemeId, onThemeChange, showNikah
                   {/* Theme Image Preview */}
                   <div className="mt-3 rounded-lg overflow-hidden border border-gold-400/20 relative h-24 bg-emerald-950/30">
                     <img
-                      src={t.id === 'nikah' ? '/images/Nikah.png' : '/images/Walima.png'}
+                      src={t.id === 'nikah' ? data['nikah_theme_image'] || '/images/Nikah.png' : data['walima_theme_image'] || '/images/Walima.png'}
                       alt={t.name}
                       className="w-full h-full object-cover"
                       onError={(e) => {
