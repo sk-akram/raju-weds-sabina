@@ -61,9 +61,9 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
 
     galleryItems.push({
       id: `item-${i}`,
-      url: data[urlKey] || fallbackUrl,
-      caption: data[captionKey] || fallbackCaption,
-      category: (data[categoryKey] as any) || fallbackCategory,
+      url: fallbackUrl, // Always use fallback to ensure correct images
+      caption: fallbackCaption,
+      category: fallbackCategory,
     });
   }
 
