@@ -369,7 +369,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                       </div>
                       <div>
                         <span className="text-[10px] text-gold-400 block font-mono">Place</span>
-                        <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden, Pairagachha, Dankuni, West Bengal 712304</span>
+                        <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden and resort, Pairagachha, Dankuni, West Bengal 712304</span>
                       </div>
                     </div>
 
@@ -450,7 +450,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                     </div>
                     <div>
                       <span className="text-[10px] text-gold-400 block font-mono">Place</span>
-                      <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden, Pairagachha, Dankuni</span>
+                      <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden and resort, Pairagachha, Dankuni</span>
                     </div>
                   </div>
 

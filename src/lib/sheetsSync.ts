@@ -46,33 +46,25 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
   gallery1_caption: { val: "The Sacred Ring Ceremony - Exchange of Eternal Vows", category: "Gallery", desc: "Image 1 Caption" },
   gallery1_category: { val: "Engagement", category: "Gallery", desc: "Image 1 Category (Blessed Beginnings, Shared Moments, Engagement)" },
 
-  gallery2_url: { val: "https://lh3.googleusercontent.com/d/1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS", category: "Gallery", desc: "Image 2 URL" },
-  gallery2_caption: { val: "Nikah Stage - Traditional Low Seating & Soft Drapes", category: "Gallery", desc: "Image 2 Caption" },
+  gallery2_url: { val: "/src/assets/images/wedding_hero_backdrop_1782331025471.jpg", category: "Gallery", desc: "Image 2 URL" },
+  gallery2_caption: { val: "Golden Geometric Arches & Blush Wedding Roses", category: "Gallery", desc: "Image 2 Caption" },
   gallery2_category: { val: "Blessed Beginnings", category: "Gallery", desc: "Image 2 Category" },
 
-  gallery3_url: { val: "https://lh3.googleusercontent.com/d/1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6", category: "Gallery", desc: "Image 3 URL" },
-  gallery3_caption: { val: "Walima Reception Banquet - Emerald and Gold Tableware", category: "Gallery", desc: "Image 3 Caption" },
-  gallery3_category: { val: "Shared Moments", category: "Gallery", desc: "Image 3 Category" },
+  gallery3_url: { val: "https://picsum.photos/seed/weddingmehndi/800/1200", category: "Gallery", desc: "Image 3 URL" },
+  gallery3_caption: { val: "Intricate Bridal Mehndi (Henna) Artistry", category: "Gallery", desc: "Image 3 Caption" },
+  gallery3_category: { val: "Blessed Beginnings", category: "Gallery", desc: "Image 3 Category" },
 
-  gallery4_url: { val: "/src/assets/images/wedding_hero_backdrop_1782331025471.jpg", category: "Gallery", desc: "Image 4 URL" },
-  gallery4_caption: { val: "Golden Geometric Arches & Blush Wedding Roses", category: "Gallery", desc: "Image 4 Caption" },
-  gallery4_category: { val: "Blessed Beginnings", category: "Gallery", desc: "Image 4 Category" },
+  gallery4_url: { val: "https://picsum.photos/seed/weddingrings/1000/1000", category: "Gallery", desc: "Image 4 URL" },
+  gallery4_caption: { val: "The Sacred Bands of Eternal Love and Respect", category: "Gallery", desc: "Image 4 Caption" },
+  gallery4_category: { val: "Engagement", category: "Gallery", desc: "Image 4 Category" },
 
-  gallery5_url: { val: "https://picsum.photos/seed/weddingmehndi/800/1200", category: "Gallery", desc: "Image 5 URL" },
-  gallery5_caption: { val: "Intricate Bridal Mehndi (Henna) Artistry", category: "Gallery", desc: "Image 5 Caption" },
-  gallery5_category: { val: "Blessed Beginnings", category: "Gallery", desc: "Image 5 Category" },
+  gallery5_url: { val: "https://picsum.photos/seed/weddingdecor/1000/700", category: "Gallery", desc: "Image 5 URL" },
+  gallery5_caption: { val: "Glowing Glass Lanterns and Warm Ambient Fairy Lights", category: "Gallery", desc: "Image 5 Caption" },
+  gallery5_category: { val: "Shared Moments", category: "Gallery", desc: "Image 5 Category" },
 
-  gallery6_url: { val: "https://picsum.photos/seed/weddingrings/1000/1000", category: "Gallery", desc: "Image 6 URL" },
-  gallery6_caption: { val: "The Sacred Bands of Eternal Love and Respect", category: "Gallery", desc: "Image 6 Caption" },
-  gallery6_category: { val: "Engagement", category: "Gallery", desc: "Image 6 Category" },
-
-  gallery7_url: { val: "https://picsum.photos/seed/weddingdecor/1000/700", category: "Gallery", desc: "Image 7 URL" },
-  gallery7_caption: { val: "Glowing Glass Lanterns and Warm Ambient Fairy Lights", category: "Gallery", desc: "Image 7 Caption" },
-  gallery7_category: { val: "Shared Moments", category: "Gallery", desc: "Image 7 Category" },
-
-  gallery8_url: { val: "https://picsum.photos/seed/weddingrose/800/1200", category: "Gallery", desc: "Image 8 URL" },
-  gallery8_caption: { val: "Fresh White & Blush Roses representing Rahmah and Sakinah", category: "Gallery", desc: "Image 8 Caption" },
-  gallery8_category: { val: "Shared Moments", category: "Gallery", desc: "Image 8 Category" },
+  gallery6_url: { val: "https://picsum.photos/seed/weddingrose/800/1200", category: "Gallery", desc: "Image 6 URL" },
+  gallery6_caption: { val: "Fresh White & Blush Roses representing Rahmah and Sakinah", category: "Gallery", desc: "Image 6 Caption" },
+  gallery6_category: { val: "Shared Moments", category: "Gallery", desc: "Image 6 Category" },
 
   nikah_theme_image: { val: "https://lh3.googleusercontent.com/d/1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6", category: "Theme", desc: "Google Drive URL for Nikah theme image" },
   walima_theme_image: { val: "https://lh3.googleusercontent.com/d/1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS", category: "Theme", desc: "Google Drive URL for Walima theme image" }
