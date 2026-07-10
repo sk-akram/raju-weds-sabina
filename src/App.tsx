@@ -126,7 +126,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
           <div className="mt-6 flex flex-col items-center gap-1">
             <span className="text-xs font-mono text-gold-300 uppercase tracking-widest flex items-center gap-1.5">
               <Calendar size={12} className="text-gold-400" />
-              August 5 – 8, 2026
+              August 7 – 8, 2026
             </span>
             <span className="text-xs font-sans text-gold-300/80 mt-1 flex items-center gap-1.5 justify-center">
               <MapPin size={12} className="text-gold-400" />
@@ -339,7 +339,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                       </div>
                       <div>
                         <span className="text-[10px] text-gold-400 block font-mono">Nikah</span>
-                        <span className="text-xs text-gold-100 font-semibold">5:30 PM IST</span>
+                        <span className="text-xs text-gold-100 font-semibold">5:30 PM</span>
                       </div>
                     </div>
 
@@ -349,7 +349,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                       </div>
                       <div>
                         <span className="text-[10px] text-gold-400 block font-mono">Grand Dinner</span>
-                        <span className="text-xs text-gold-100 font-semibold">8:00 PM IST</span>
+                        <span className="text-xs text-gold-100 font-semibold">8:00 PM</span>
                       </div>
                     </div>
 
@@ -359,7 +359,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                       </div>
                       <div>
                         <span className="text-[10px] text-gold-400 block font-mono">Post Nikah Celebration</span>
-                        <span className="text-xs text-gold-100 font-semibold">10:00 PM IST</span>
+                        <span className="text-xs text-gold-100 font-semibold">10:00 PM</span>
                       </div>
                     </div>
 
@@ -369,7 +369,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                       </div>
                       <div>
                         <span className="text-[10px] text-gold-400 block font-mono">Place</span>
-                        <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden and resort, Pairagachha, Dankuni, West Bengal 712304</span>
+                        <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden & Resort, Pairagachha, Dankuni, West Bengal 712304</span>
                       </div>
                     </div>
 
@@ -440,7 +440,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                     </div>
                     <div>
                       <span className="text-[10px] text-gold-400 block font-mono">Timing</span>
-                      <span className="text-xs text-gold-100 font-semibold">12:00 PM IST onwards (Lunch)</span>
+                      <span className="text-xs text-gold-100 font-semibold">12:00 PM onwards (Lunch)</span>
                     </div>
                   </div>
 
@@ -450,7 +450,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                     </div>
                     <div>
                       <span className="text-[10px] text-gold-400 block font-mono">Place</span>
-                      <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden and resort, Pairagachha, Dankuni</span>
+                      <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden & Resort, Pairagachha, Dankuni</span>
                     </div>
                   </div>
 

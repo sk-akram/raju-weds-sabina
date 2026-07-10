@@ -289,8 +289,8 @@ export default function CountdownTimer({ showNikah = true }: CountdownTimerProps
 
       <div className="text-xs text-center text-gold-300/60 font-serif italic mt-6 max-w-md relative z-10">
         {showNikah
-          ? "Insha'Allah on Friday, August 7, 2026 at 5:30 PM IST — Nikah Ceremony at Gulmohar Garden."
-          : "Insha'Allah on Saturday, August 8, 2026 at 12:00 PM IST — Walima Reception at Gulmohar Garden."
+          ? "Insha'Allah on Friday, August 7, 2026 at 5:30 PM — Nikah Ceremony at Gulmohar Garden."
+          : "Insha'Allah on Saturday, August 8, 2026 at 12:00 PM — Walima Reception at Gulmohar Garden."
         }
       </div>
     </div>

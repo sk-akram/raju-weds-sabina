@@ -25,7 +25,7 @@ export const THEMES: WeddingTheme[] = [
     id: 'nikah',
     name: 'Blushing Nikah',
     arabicName: 'النكاح المبارك',
-    tagline: 'Deep Burgundy, Royal Blue & Rose Blush — Warm Romance',
+    tagline: '',
     swatches: [
       { name: 'Deep Burgundy', hex: '#2d0a11' },
       { name: 'Royal Blue', hex: '#1e3a8a' },

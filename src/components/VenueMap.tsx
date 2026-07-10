@@ -18,7 +18,7 @@ export default function VenueMap({ showNikah = true }: VenueMapProps) {
 
   const allVenues = [
     {
-      name: "Gulmohar Garden and resort",
+      name: "Gulmohar Garden & Resort",
       address: "Pairagachha, Dankuni, West Bengal 712304",
       lat: 22.7054674,
       lng: 88.2616727,
@@ -27,7 +27,7 @@ export default function VenueMap({ showNikah = true }: VenueMapProps) {
       googleMapsLink: "https://www.google.com/maps/place/Gulmohar+Garden+Resort+%26+Banquets+%7C+Best+Banquets+in+Kolkata/@22.7054674,88.2590978,702m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f883c603cd769b:0xbbbb4d06ef362ae0!8m2!3d22.7054674!4d88.2616727!16s%2Fg%2F11zhnrkct1?hl=en-IN&entry=ttu"
     },
     {
-      name: "Gulmohar Garden and resort",
+      name: "Gulmohar Garden & Resort",
       address: "Pairagachha, Dankuni, West Bengal 712304",
       lat: 22.7054674,
       lng: 88.2616727,
