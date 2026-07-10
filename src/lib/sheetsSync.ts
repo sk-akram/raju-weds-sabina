@@ -42,27 +42,19 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
   chapter3_story: { val: "Surrounded by the warmth of our closest family, we celebrated our official Engagement (Baat Pakki). Exchanging rings and heartfelt prayers, we took a monumental step toward weaving our futures together. Our hearts are filled with gratitude and beautiful hope for the life we are going to build as companions for Jannah, Insha'Allah.", category: "Storyline", desc: "Story Chapter 3 Full Text description" },
   chapter3_image: { val: "https://lh3.googleusercontent.com/d/1RwPX-6FbXAGL3evEmdj8Nffl-muyBq6l", category: "Storyline", desc: "Story Chapter 3 Image link" },
 
-  gallery1_url: { val: "", category: "Gallery", desc: "Image 1 URL" },
+  gallery1_url: { val: "https://lh3.googleusercontent.com/d/1RwPX-6FbXAGL3evEmdj8Nffl-muyBq6l", category: "Gallery", desc: "Image 1 URL" },
   gallery1_caption: { val: "The Sacred Ring Ceremony - Exchange of Eternal Vows", category: "Gallery", desc: "Image 1 Caption" },
   gallery1_category: { val: "pre-wedding", category: "Gallery", desc: "Image 1 Category (Blessed Beginnings, Shared Moments, Engagement)" },
 
-  gallery2_url: { val: "", category: "Gallery", desc: "Image 2 URL" },
-  gallery2_caption: { val: "Golden Geometric Arches & Blush Wedding Roses", category: "Gallery", desc: "Image 2 Caption" },
-  gallery2_category: { val: "pre-wedding", category: "Gallery", desc: "Image 2 Category" },
-
-  gallery3_url: { val: "", category: "Gallery", desc: "Image 3 URL" },
-  gallery3_caption: { val: "Intricate Bridal Mehndi (Henna) Artistry", category: "Gallery", desc: "Image 3 Caption" },
-  gallery3_category: { val: "pre-wedding", category: "Gallery", desc: "Image 3 Category" },
-
-  gallery4_url: { val: "", category: "Gallery", desc: "Image 4 URL" },
+  gallery4_url: { val: "https://picsum.photos/seed/weddingrings/1000/1000", category: "Gallery", desc: "Image 4 URL" },
   gallery4_caption: { val: "The Sacred Bands of Eternal Love and Respect", category: "Gallery", desc: "Image 4 Caption" },
   gallery4_category: { val: "pre-wedding", category: "Gallery", desc: "Image 4 Category" },
 
-  gallery5_url: { val: "", category: "Gallery", desc: "Image 5 URL" },
+  gallery5_url: { val: "https://picsum.photos/seed/weddingdecor/1000/700", category: "Gallery", desc: "Image 5 URL" },
   gallery5_caption: { val: "Glowing Glass Lanterns and Warm Ambient Fairy Lights", category: "Gallery", desc: "Image 5 Caption" },
   gallery5_category: { val: "reception", category: "Gallery", desc: "Image 5 Category" },
 
-  gallery6_url: { val: "", category: "Gallery", desc: "Image 6 URL" },
+  gallery6_url: { val: "https://picsum.photos/seed/weddingrose/800/1200", category: "Gallery", desc: "Image 6 URL" },
   gallery6_caption: { val: "Fresh White & Blush Roses representing Rahmah and Sakinah", category: "Gallery", desc: "Image 6 Caption" },
   gallery6_category: { val: "reception", category: "Gallery", desc: "Image 6 Category" },
 

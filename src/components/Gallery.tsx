@@ -21,7 +21,7 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
   const galleryItems: GalleryItem[] = [];
 
   // Dynamically load gallery items from spreadsheet overrides or fallbacks
-  const galleryIndices = [1, 2, 3, 4, 5, 6]; // Load 6 gallery items
+  const galleryIndices = [1, 4, 5, 6]; // Load 4 gallery items (removed 2 and 3)
 
   for (const i of galleryIndices) {
     const urlKey = `gallery${i}_url`;
@@ -36,14 +36,6 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
     if (i === 1) {
       fallbackUrl = "https://lh3.googleusercontent.com/d/1RwPX-6FbXAGL3evEmdj8Nffl-muyBq6l";
       fallbackCaption = "The Sacred Ring Ceremony - Exchange of Eternal Vows";
-      fallbackCategory = "pre-wedding";
-    } else if (i === 2) {
-      fallbackUrl = "/src/assets/images/wedding_hero_backdrop_1782331025471.jpg";
-      fallbackCaption = "Golden Geometric Arches & Blush Wedding Roses";
-      fallbackCategory = "pre-wedding";
-    } else if (i === 3) {
-      fallbackUrl = "https://picsum.photos/seed/weddingmehndi/800/1200";
-      fallbackCaption = "Intricate Bridal Mehndi (Henna) Artistry";
       fallbackCategory = "pre-wedding";
     } else if (i === 4) {
       fallbackUrl = "https://picsum.photos/seed/weddingrings/1000/1000";
