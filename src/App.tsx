@@ -345,6 +345,26 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
 
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400">
+                        <Clock size={14} />
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gold-400 block font-mono">Grand Dinner</span>
+                        <span className="text-xs text-gold-100 font-semibold">8:00 PM IST</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400">
+                        <Clock size={14} />
+                      </div>
+                      <div>
+                        <span className="text-[10px] text-gold-400 block font-mono">Post Nikah Celebration</span>
+                        <span className="text-xs text-gold-100 font-semibold">10:00 PM IST</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-500/20 flex items-center justify-center text-gold-400">
                         <MapPin size={14} />
                       </div>
                       <div>
@@ -420,7 +440,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                     </div>
                     <div>
                       <span className="text-[10px] text-gold-400 block font-mono">Timing</span>
-                      <span className="text-xs text-gold-100 font-semibold">12:00 PM IST onwards</span>
+                      <span className="text-xs text-gold-100 font-semibold">12:00 PM IST onwards (Lunch)</span>
                     </div>
                   </div>
 

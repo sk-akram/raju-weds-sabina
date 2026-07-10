@@ -18,22 +18,6 @@ export default function VenueMap({ showNikah = true }: VenueMapProps) {
 
   const allVenues = [
     {
-      name: "Bride's Home",
-      address: "Pandua, Hooghly, West Bengal",
-      lat: 23.2432,
-      lng: 88.3789,
-      event: "Mehendi & Kheer Pitha",
-      days: "Aug 5-6"
-    },
-    {
-      name: "Groom's Home",
-      address: "Hooghly, West Bengal",
-      lat: 23.2432,
-      lng: 88.3789,
-      event: "Mehendi",
-      days: "Aug 6"
-    },
-    {
       name: "Gulmohar Garden",
       address: "Pairagachha, Dankuni, West Bengal 712304",
       lat: 22.7054674,
@@ -55,7 +39,7 @@ export default function VenueMap({ showNikah = true }: VenueMapProps) {
 
   // Filter venues based on showNikah prop
   const venues = showNikah ? allVenues : allVenues.filter(v => v.event === "Walima Reception");
-  const [selectedVenue, setSelectedVenue] = useState(venues[showNikah ? 2 : 0]); // Default to Gulmohar Garden
+  const [selectedVenue, setSelectedVenue] = useState(venues[0]);
 
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(selectedVenue.address);
@@ -193,11 +177,6 @@ export default function VenueMap({ showNikah = true }: VenueMapProps) {
                 </div>
               </a>
             ))}
-          </div>
-
-          <div className="mt-5 pt-4 border-t border-gold-300/10 text-[11px] text-gold-300/60 flex items-center gap-1.5 font-sans justify-center">
-            <Navigation size={10} className="text-gold-400" />
-            <span>Valet parking is arranged at the Alcove Banquet main gate.</span>
           </div>
         </div>
       </motion.div>

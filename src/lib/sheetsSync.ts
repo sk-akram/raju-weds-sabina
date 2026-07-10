@@ -43,14 +43,14 @@ export const DEFAULT_SYNC_DATA: Record<string, { val: string; category: string; 
   chapter3_image: { val: "https://lh3.googleusercontent.com/d/1RwPX-6FbXAGL3evEmdj8Nffl-muyBq6l", category: "Storyline", desc: "Story Chapter 3 Image link" },
 
   gallery1_url: { val: "https://lh3.googleusercontent.com/d/1RwPX-6FbXAGL3evEmdj8Nffl-muyBq6l", category: "Gallery", desc: "Image 1 URL" },
-  gallery1_caption: { val: "The Blessed Couple entering the Grand Banquet Hall", category: "Gallery", desc: "Image 1 Caption" },
+  gallery1_caption: { val: "The Sacred Ring Ceremony - Exchange of Eternal Vows", category: "Gallery", desc: "Image 1 Caption" },
   gallery1_category: { val: "Engagement", category: "Gallery", desc: "Image 1 Category (Blessed Beginnings, Shared Moments, Engagement)" },
 
-  gallery2_url: { val: "https://lh3.googleusercontent.com/d/1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6", category: "Gallery", desc: "Image 2 URL" },
+  gallery2_url: { val: "https://lh3.googleusercontent.com/d/1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS", category: "Gallery", desc: "Image 2 URL" },
   gallery2_caption: { val: "Nikah Stage - Traditional Low Seating & Soft Drapes", category: "Gallery", desc: "Image 2 Caption" },
   gallery2_category: { val: "Blessed Beginnings", category: "Gallery", desc: "Image 2 Category" },
 
-  gallery3_url: { val: "https://lh3.googleusercontent.com/d/1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS", category: "Gallery", desc: "Image 3 URL" },
+  gallery3_url: { val: "https://lh3.googleusercontent.com/d/1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6", category: "Gallery", desc: "Image 3 URL" },
   gallery3_caption: { val: "Walima Reception Banquet - Emerald and Gold Tableware", category: "Gallery", desc: "Image 3 Caption" },
   gallery3_category: { val: "Shared Moments", category: "Gallery", desc: "Image 3 Category" },
 

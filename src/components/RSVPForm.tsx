@@ -364,9 +364,8 @@ export default function RSVPForm({ showNikah = true }: RSVPFormProps) {
                     disabled={formData.attendance === AttendanceStatus.DECLINE}
                     className="w-full px-4 py-2.5 rounded-xl bg-white border border-gold-200 focus:border-gold-500 focus:outline-none focus:ring-1 focus:ring-gold-500 text-sm text-emerald-950 disabled:bg-emerald-950/5 disabled:text-emerald-950/45"
                   >
-                    <option value="halal">Traditional Halal (Non-Veg)</option>
-                    <option value="vegetarian">Pure Vegetarian</option>
-                    <option value="none">No Specific Restrictions</option>
+                    <option value="halal">Non-Veg(Halal)</option>
+                    <option value="vegetarian">Veg</option>
                   </select>
                 </div>
               </div>
