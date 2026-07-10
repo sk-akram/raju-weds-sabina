@@ -130,7 +130,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
             </span>
             <span className="text-xs font-sans text-gold-300/80 mt-1 flex items-center gap-1.5 justify-center">
               <MapPin size={12} className="text-gold-400" />
-              Gulmohar Garden & Resort, Pairagachha, Dankuni
+              Gulmohar Garden & Resort, Pairagachha, Dankuni, West Bengal 712304
             </span>
           </div>
         </motion.div>
@@ -450,7 +450,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
                     </div>
                     <div>
                       <span className="text-[10px] text-gold-400 block font-mono">Place</span>
-                      <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden & Resort, Pairagachha, Dankuni</span>
+                      <span className="text-xs text-gold-100 font-semibold">Gulmohar Garden & Resort, Pairagachha, Dankuni, West Bengal 712304</span>
                     </div>
                   </div>
 

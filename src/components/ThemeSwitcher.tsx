@@ -46,7 +46,7 @@ export const THEMES: WeddingTheme[] = [
     id: 'walima',
     name: 'Walima Chic',
     arabicName: 'وليمة العرس',
-    tagline: 'Deep Navy Blue, Royal Blue & Silver — Modern Luxury',
+    tagline: '',
     swatches: [
       { name: 'Navy Blue', hex: '#050914' },
       { name: 'Royal Blue', hex: '#1e3a8a' },
