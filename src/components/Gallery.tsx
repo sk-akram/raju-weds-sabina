@@ -20,8 +20,10 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
 
   const galleryItems: GalleryItem[] = [];
 
-  // Dynamically load all 3 gallery items from spreadsheet overrides or fallbacks
-  for (let i = 1; i <= 3; i++) {
+  // Dynamically load gallery items from spreadsheet overrides or fallbacks
+  const galleryIndices = [1, 2, 3, 4, 5, 6]; // Load 6 gallery items
+
+  for (const i of galleryIndices) {
     const urlKey = `gallery${i}_url`;
     const captionKey = `gallery${i}_caption`;
     const categoryKey = `gallery${i}_category`;
@@ -33,21 +35,33 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
 
     if (i === 1) {
       fallbackUrl = "https://lh3.googleusercontent.com/d/1RwPX-6FbXAGL3evEmdj8Nffl-muyBq6l";
-      fallbackCaption = "The Blessed Couple entering the Grand Banquet Hall";
+      fallbackCaption = "The Sacred Ring Ceremony - Exchange of Eternal Vows";
       fallbackCategory = "pre-wedding";
     } else if (i === 2) {
-      fallbackUrl = data['nikah_theme_image'] || "https://lh3.googleusercontent.com/d/1GCLd0OaY3709XXdb2WPYpwY2GDANMIK6";
-      fallbackCaption = "Nikah Stage - Traditional Low Seating & Soft Drapes";
-      fallbackCategory = "ceremony";
+      fallbackUrl = "/src/assets/images/wedding_hero_backdrop_1782331025471.jpg";
+      fallbackCaption = "Golden Geometric Arches & Blush Wedding Roses";
+      fallbackCategory = "pre-wedding";
     } else if (i === 3) {
-      fallbackUrl = data['walima_theme_image'] || "https://lh3.googleusercontent.com/d/1yWnzNYBWJD4zYaJWxzi6SE2LyDKVUJtS";
-      fallbackCaption = "Walima Reception Banquet - Emerald and Gold Tableware";
+      fallbackUrl = "https://picsum.photos/seed/weddingmehndi/800/1200";
+      fallbackCaption = "Intricate Bridal Mehndi (Henna) Artistry";
+      fallbackCategory = "pre-wedding";
+    } else if (i === 4) {
+      fallbackUrl = "https://picsum.photos/seed/weddingrings/1000/1000";
+      fallbackCaption = "The Sacred Bands of Eternal Love and Respect";
+      fallbackCategory = "pre-wedding";
+    } else if (i === 5) {
+      fallbackUrl = "https://picsum.photos/seed/weddingdecor/1000/700";
+      fallbackCaption = "Glowing Glass Lanterns and Warm Ambient Fairy Lights";
+      fallbackCategory = "reception";
+    } else if (i === 6) {
+      fallbackUrl = "https://picsum.photos/seed/weddingrose/800/1200";
+      fallbackCaption = "Fresh White & Blush Roses representing Rahmah and Sakinah";
       fallbackCategory = "reception";
     }
 
     galleryItems.push({
       id: `item-${i}`,
-      url: i === 2 ? (data['nikah_theme_image'] || fallbackUrl) : i === 3 ? (data['walima_theme_image'] || fallbackUrl) : (data[urlKey] || fallbackUrl),
+      url: data[urlKey] || fallbackUrl,
       caption: data[captionKey] || fallbackCaption,
       category: (data[categoryKey] as any) || fallbackCategory,
     });
