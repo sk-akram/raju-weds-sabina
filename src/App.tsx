@@ -130,7 +130,7 @@ function WeddingApp({ showNikah = true }: { showNikah?: boolean }) {
             </span>
             <span className="text-xs font-sans text-gold-300/80 mt-1 flex items-center gap-1.5 justify-center">
               <MapPin size={12} className="text-gold-400" />
-              Gulmohar Garden, Pairagachha, Dankuni
+              Gulmohar Garden & Resort, Pairagachha, Dankuni
             </span>
           </div>
         </motion.div>

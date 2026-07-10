@@ -21,7 +21,7 @@ export default function Gallery({ showNikah = true }: GalleryProps) {
   const galleryItems: GalleryItem[] = [];
 
   // Dynamically load gallery items from spreadsheet overrides or fallbacks
-  const galleryIndices = [1, 4, 5, 6]; // Load 4 gallery items (removed 2 and 3)
+  const galleryIndices = [1]; // Load only 1 gallery item
 
   for (const i of galleryIndices) {
     const urlKey = `gallery${i}_url`;
